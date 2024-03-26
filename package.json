@@ -1,0 +1,39 @@
+{
+  "name": "pillarbox-web-theme-editor",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "eslint": "eslint src/**",
+    "outdated": "npm outdated",
+    "start": "vite --port 9696",
+    "stylelint": "stylelint **/*.{css,scss,js}",
+    "stylelint:fix": "stylelint **/*.{css,scss,js} --fix",
+    "prepare": "husky",
+    "preview": "vite preview --port 9696"
+  },
+  "dependencies": {
+    "@srgssr/pillarbox-web": "^1.6.0",
+    "lit": "^3.1.2",
+    "monaco-editor": "^0.47.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^9.0.11",
+    "postcss-lit": "^1.1.1",
+    "sass": "^1.72.0",
+    "stylelint": "^16.3.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-order": "^6.0.4",
+    "vite": "^5.2.6"
+  }
+}
