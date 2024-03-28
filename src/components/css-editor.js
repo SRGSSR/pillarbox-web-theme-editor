@@ -121,6 +121,7 @@ class CssEditor extends LitElement {
       language: 'css',
       theme: this.getTheme(),
       automaticLayout: true,
+      fixedOverflowWidgets: true,
       minimap: { enabled: false }
     });
 
