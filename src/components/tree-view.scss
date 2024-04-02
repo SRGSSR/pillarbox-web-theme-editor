@@ -1,0 +1,65 @@
+:host {
+  --tree-background-color: #333;
+  --tree-item-hover-color: #555;
+  --tree-item-selected-color: #666;
+  --tree-folder-icon: '📁';
+  --tree-file-icon: '📄';
+  --tree-icon-size: 1em;
+  --tree-indentation: 1.5em;
+
+  width: 100%;
+}
+
+[part~="root"] {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+[part~="item"] {
+  line-height: calc(var(--tree-icon-size) * 2);
+  cursor: pointer;
+}
+
+[part~="item"] > [part~="root"] {
+  margin-left: var(--tree-indentation);
+}
+
+[part~="item"][part~="closed"] > [part~="root"] {
+  display: none;
+}
+
+[part~="item-name"]::before {
+  display: inline-block;
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+  margin-right: 0.5em;
+  line-height: var(--tree-icon-size);
+  text-align: center;
+}
+
+[part~="item"][part~="folder"] > [part~="item-name"]::before {
+  content: var(--tree-folder-icon);
+}
+
+[part~="item"]:not([part~="folder"]) > [part~="item-name"]::before {
+  content: var(--tree-file-icon);
+}
+
+[part~="item-name"] {
+  display: flex;
+  align-items: center;
+  padding: 0.1em 0.5em;
+  border-radius: 0.5em;
+  transition: background-color 0.3s;
+}
+
+[part~="item-name"]:hover {
+  background-color: var(--tree-item-hover-color);
+}
+
+/* Optional: Add a "selected" class to items when clicked to highlight the current selection */
+
+[part~="item-name"].selected {
+  background-color: var(--tree-item-selected-color);
+}
