@@ -121,7 +121,7 @@ class CssEditor extends LitElement {
        * @property {Object} detail The event detail object.
        * @property {Boolean} detail.value The new content of the editor.
        */
-      this.dispatchEvent(new CustomEvent('change', { detail: { value: this.editor.getValue() } }));
+      this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.editor.getValue() } }));
     });
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {

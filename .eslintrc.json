@@ -101,5 +101,13 @@
       "error",
       "never"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["test/**"],
+      "plugins": ["vitest"],
+      "extends": ["plugin:vitest/recommended"],
+      "rules": { "max-lines-per-function": "off" }
+    }
+  ]
 }

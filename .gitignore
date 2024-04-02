@@ -55,3 +55,6 @@ dist
 
 # macOs
 .DS_Store
+
+# Coverage
+coverage

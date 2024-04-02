@@ -7,6 +7,6 @@ const editor = document.getElementById('editor');
 const preview = document.getElementById('preview');
 
 preview.appliedCss = editor.getValue();
-editor.addEventListener('change', (event) => {
+editor.addEventListener('value-changed', (event) => {
   preview.appliedCss = event.detail.value;
 });

@@ -22,10 +22,10 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@srgssr'
         env:
-          NODE_AUTH_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        env :
+        env:
           CI: true
         run: |
           npm pkg delete scripts.prepare
@@ -34,3 +34,10 @@ jobs:
       - name: Run JS and CSS linters
         run: |
           npm run eslint && npm run stylelint
+
+      - name: Run unit tests
+        run: |
+          npm test
+
+      - name: Report Coverage
+        uses: davelosert/vitest-coverage-report-action@v2
