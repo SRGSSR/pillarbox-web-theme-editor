@@ -1,4 +1,5 @@
-import { css, html, LitElement } from 'lit';
+import { html, LitElement, unsafeCSS } from 'lit';
+import resizableBarStyle from './resizable-bar.scss?inline';
 
 /**
  * `ResizableBar` is a LitElement component that implements a UI element
@@ -7,28 +8,16 @@ import { css, html, LitElement } from 'lit';
  * a visual handle that users can drag to resize adjacent content areas.
  *
  * @element resizable-bar
+ *
  * @fires ResizableBar#resize-move Fired as the user resizes, with the current pointer X-coordinate.
+ *
+ * @part resizer - The resizer element.
  *
  * @example
  * <resizable-bar></resizable-bar>
  */
 class ResizableBar extends LitElement {
-  static styles = css`
-    :host {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      margin-inline: 1em;
-    }
-
-    [part="resizer"] {
-      background-color: #575454;
-      cursor: ew-resize;
-      width: 0.3em;
-      height: 50%;
-      border-radius: 5px;
-  `;
+  static styles = unsafeCSS(resizableBarStyle);
 
   render() {
     return html`

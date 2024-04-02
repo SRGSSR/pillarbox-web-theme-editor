@@ -4,12 +4,13 @@ import pillarbox from '@srgssr/pillarbox-web';
 import pbStyle from '@srgssr/pillarbox-web/dist/pillarbox.min.css?inline';
 
 /**
- * `PreviewBox` is a LitElement component that creates a customizable video player
+ * `PreviewBox` is a LitElement component that creates a pillarbox player
  * with specific styling and functionalities, including the ability to apply
- * custom CSS and utilize the pillarbox library for additional video controls.
+ * custom CSS.
  *
  * @element preview-box
- * @prop {String} appliedCss CSS styles that can be applied to the video player.
+ *
+ * @property {String} appliedCss CSS styles that can be applied to the video player.
  *
  * @example
  * <preview-box></preview-box>

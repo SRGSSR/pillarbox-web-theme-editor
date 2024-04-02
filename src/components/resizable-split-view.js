@@ -1,4 +1,5 @@
-import { css, html, LitElement } from 'lit';
+import { html, LitElement, unsafeCSS } from 'lit';
+import resizableSplitViewStyle from './resizable-split-view.scss?inline';
 import './resizable-bar.js';
 
 /**
@@ -7,6 +8,10 @@ import './resizable-bar.js';
  * allowing users to inject custom content into each side of the split view.
  *
  * @element resizable-split-view
+ *
+ * @slot left - The left element of the split view
+ * @slot right - The right element of the split vie
+ *
  * @example
  * <resizable-split-view>
  *   <div slot="left">Left panel content goes here.</div>
@@ -14,29 +19,7 @@ import './resizable-bar.js';
  * </resizable-split-view>
  */
 class ResizableSplitView extends LitElement {
-  static styles = css`
-    :host {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      
-      --left-panel-width: 50%; /* Default width for the left panel */
-    }
-
-    ::slotted([slot="left"]), ::slotted([slot="right"]) {
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-    }
-    
-    ::slotted([slot="left"]) {
-      flex: 0 0 var(--left-panel-width);
-    }
-
-    ::slotted([slot="right"]) {
-      flex: 1;
-    }
-  `;
+  static styles = unsafeCSS(resizableSplitViewStyle);
 
   render() {
     return html`
