@@ -1,9 +1,6 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { html, LitElement } from 'lit';
 import { createRef, ref } from 'lit/directives/ref.js';
-
-// -- Monaco Editor Imports --
 import * as monaco from 'monaco-editor';
-import editorStyle from 'monaco-editor/min/vs/editor/editor.main.css?inline';
 import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
 
@@ -35,7 +32,9 @@ self.MonacoEnvironment = {
  * based on the user's preferred color scheme and emits a `change` event when the content changes.
  *
  * @element css-editor
+ *
  * @property {String} theme The current theme of the editor, either 'vs-dark' or 'vs-light'.
+ *
  * @fires CssEditor#change Event fired when the editor's content changes.
  *
  * @example
@@ -45,18 +44,6 @@ class CssEditor extends LitElement {
   static properties = {
     theme: { type: String }
   };
-
-  static styles = [css`
-    :host {
-      --editor-width: 100%;
-      --editor-height: 100%;
-    }
-
-    .monaco-container {
-      width: var(--editor-width);
-      height: var(--editor-height);
-    }
-  `, unsafeCSS(editorStyle)];
 
   constructor() {
     super();
@@ -134,7 +121,7 @@ class CssEditor extends LitElement {
        * @property {Object} detail The event detail object.
        * @property {Boolean} detail.value The new content of the editor.
        */
-      this.dispatchEvent(new CustomEvent('change', { detail: { value: this.editor.getValue() } }));
+      this.dispatchEvent(new CustomEvent('value-changed', { detail: { value: this.editor.getValue() } }));
     });
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
