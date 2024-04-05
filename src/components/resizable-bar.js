@@ -13,6 +13,12 @@ import resizableBarStyle from './resizable-bar.scss?inline';
  *
  * @part resizer - The resizer element.
  *
+ * @cssproperty [--resizable-bar-margin-inline=1em] - The margin on the sides of the resizable bar.
+ * @cssproperty [--resizable-bar-resizer-bg-color=#575454] - The background color of the resizable bar.
+ * @cssproperty [--resizable-bar-resizer-width=0.3em] - The width of the resizable bar.
+ * @cssproperty [--resizable-bar-resizer-height=50%] - The height of the resizable bar.
+ * @cssproperty [--resizable-bar-resizer-border-radius=5px] - The border radius of the resizable bar.
+ *
  * @example
  * <resizable-bar></resizable-bar>
  */

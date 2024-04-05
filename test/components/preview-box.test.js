@@ -33,7 +33,7 @@ describe('PreviewBox Component', () => {
     expect(pillarboxMock)
       .toHaveBeenCalledWith(expect.anything(), { muted: true });
     expect(pillarboxMock.mock.instances[0].srcSpy).toHaveBeenCalledWith({
-      src: 'urn:rts:video:14764404',
+      src: 'urn:rts:video:14318206',
       type: 'srgssr/urn'
     });
   });

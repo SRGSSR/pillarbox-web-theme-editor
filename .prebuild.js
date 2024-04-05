@@ -3,7 +3,8 @@
  * recursively includes all the files and their content to create json
  * representation of the workspace for the theme editor.
  */
-import { readdirSync, statSync, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
+import * as path from 'path';
 import { join } from 'path';
 
 const isDebugEnabled = process.argv.includes('--debug');
@@ -55,9 +56,11 @@ try {
 
   // Define the output path for the generated workspace structure JSON file.
   const outputPath = './src/assets/pillarbox-scss-workspace.json';
+  const outputDir = path.dirname(outputPath);
 
   // Write the structured workspace to a JSON file, pretty-printed.
   console.log(`Writing the workspace structure to ${outputPath}...`);
+  mkdirSync(outputDir, { recursive: true });
   writeFileSync(outputPath, JSON.stringify(structure, null, 2), 'utf-8');
 
   console.log(`Successfully wrote the workspace structure to ${outputPath}`);

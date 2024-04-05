@@ -1,7 +1,6 @@
 import { html, LitElement } from 'lit';
 import { createRef, ref } from 'lit/directives/ref.js';
 import pillarbox from '@srgssr/pillarbox-web';
-import pbStyle from '@srgssr/pillarbox-web/dist/pillarbox.min.css?inline';
 
 /**
  * `PreviewBox` is a LitElement component that creates a pillarbox player
@@ -32,7 +31,6 @@ class PreviewBox extends LitElement {
    */
   render() {
     return html`
-      <style>${pbStyle}</style>
       <style>${this.appliedCss}</style>
       <video id="main-player"
              class="pillarbox-js"
@@ -52,7 +50,7 @@ class PreviewBox extends LitElement {
     // Initializes pillarbox with the video element and sets the video source.
     this.player = pillarbox(this.pillarboxRef.value, { muted: true });
     this.player.src({
-      src: 'urn:rts:video:14764404',
+      src: 'urn:rts:video:14318206',
       type: 'srgssr/urn'
     });
   }

@@ -81,6 +81,12 @@ footer {
   }
 }
 
+.craft-title-container {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
 /*
  * TODO: Adjust .monaco-container dimensions to ensure full parent coverage.
  *

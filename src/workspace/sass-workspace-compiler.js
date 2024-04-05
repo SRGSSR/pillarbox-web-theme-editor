@@ -7,6 +7,7 @@ import { VirtualSassImporter } from './virtual-sass-importer.js';
  *
  * @property workspace The virtual workspace. Changes in the `content` of any
  *                     file will be reflected once the CSS compiled.
+ * @property mainScss The main scss file.
  *
  * @example
  * // Define your workspace
@@ -36,12 +37,6 @@ export class SassWorkspaceCompiler {
    * @type {import('sass/types/importer').Importer}
    */
   #importer;
-  /**
-   * The main scss file.
-   *
-   * @type {TreeItem}
-   */
-  #mainScss;
 
   /**
    * Initializes a new instance of the SassWorkspaceCompiler.
@@ -53,7 +48,7 @@ export class SassWorkspaceCompiler {
   constructor(workspace, main, resources = {}) {
     this.workspace = workspace;
     this.#importer = new VirtualSassImporter(workspace, resources);
-    this.#mainScss = this.workspace.find(item => item.name === main);
+    this.mainScss = this.workspace.find(item => item.name === main);
   }
 
   /**
@@ -67,6 +62,6 @@ export class SassWorkspaceCompiler {
       style: 'compressed'
     };
 
-    return sass.compileString(this.#mainScss.content, opts).css;
+    return sass.compileString(this.mainScss.content, opts).css;
   }
 }
