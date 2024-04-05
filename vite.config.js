@@ -15,13 +15,16 @@ export default defineConfig({
     alias: [
       {
         find: /^monaco-editor$/,
-        replacement: __dirname + '/node_modules/monaco-editor/esm/vs/editor/editor.api',
+        replacement: __dirname + '/node_modules/monaco-editor/esm/vs/editor/editor.api'
       },
       {
         find: /^@srgssr\/pillarbox-web$/,
-        replacement: __dirname + '/node_modules/@srgssr/pillarbox-web/dist/pillarbox.es.js',
+        replacement: __dirname + '/node_modules/@srgssr/pillarbox-web/dist/pillarbox.es.js'
       }
-    ],
+    ]
+  },
+  optimizeDeps: {
+    exclude: ['sass']
   },
   base: './'
 });

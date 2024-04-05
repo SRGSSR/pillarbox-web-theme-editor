@@ -103,6 +103,7 @@ customElements.define('tree-view', TreeView);
  * @typedef {Object} TreeItem
  * @property {string} name The name of the item.
  * @property {string} type The type of the item, typically 'folder' or 'file'.
+ * @property {string} content The content of this item.
  * @property {boolean} [closed=true] (Optional) Whether the item is closed or opened (applies only to folders).
  * @property {TreeItem[]} [children] (Optional) Array of child items if this is a folder.
  */

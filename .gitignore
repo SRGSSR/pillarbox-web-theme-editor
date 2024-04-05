@@ -58,3 +58,6 @@ dist
 
 # Coverage
 coverage
+
+# Generated workspace
+src/assets/pillarbox-scss-workspace.json

@@ -105,7 +105,7 @@ class CssEditor extends LitElement {
 
     this.editor = monaco.editor.create(this.container.value, {
       value: initialStyle,
-      language: 'css',
+      language: 'scss',
       theme: this.getTheme(),
       automaticLayout: true,
       fixedOverflowWidgets: true,

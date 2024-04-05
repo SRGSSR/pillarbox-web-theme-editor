@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "prebuild": "node .prebuild.js",
+    "build": "npm run prebuild && vite build",
     "test": "vitest run --coverage --reporter=verbose --silent",
     "eslint": "eslint {src,test}/**/*.js",
     "eslint:fix": "eslint {src,test}/**/*.js --fix",
     "outdated": "npm outdated",
-    "start": "vite --port 9696",
+    "start": "npm run prebuild && vite --port 9696",
     "stylelint": "stylelint {src,scss}/**/*.{css,scss,js}",
     "stylelint:fix": "stylelint {src,scss}/**/*.{css,scss,js} --fix",
     "prepare": "husky",
@@ -18,7 +19,8 @@
   "dependencies": {
     "@srgssr/pillarbox-web": "^1.6.0",
     "lit": "^3.1.2",
-    "monaco-editor": "^0.47.0"
+    "monaco-editor": "^0.47.0",
+    "sass": "^1.74.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
@@ -33,7 +35,6 @@
     "husky": "^9.0.11",
     "jsdom": "^24.0.0",
     "postcss-lit": "^1.1.1",
-    "sass": "^1.72.0",
     "stylelint": "^16.3.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^36.0.0",
