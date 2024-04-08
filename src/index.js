@@ -11,6 +11,7 @@ const navigation = document.getElementById('navigation');
 const navigationButton = document.getElementById('navigation-button');
 const editor = document.getElementById('editor');
 const preview = document.getElementById('preview');
+const downloadButton = document.getElementById('download');
 
 navigation.items = sassCompiler.workspace;
 navigationButton.label = currentItem.name;
@@ -28,3 +29,5 @@ editor.addEventListener('value-changed', (event) => {
   currentItem.content = event.detail.value;
   preview.appliedCss = sassCompiler.compile();
 });
+
+downloadButton.addEventListener('click', () => sassCompiler.download());

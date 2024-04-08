@@ -1,5 +1,6 @@
 import * as sass from 'sass';
 import { VirtualSassImporter } from './virtual-sass-importer.js';
+import ZipWorkspace from './zip-workspace.js';
 
 /**
  * Compiles SCSS files using a virtual filesystem. The compiler utilizes a
@@ -63,5 +64,16 @@ export class SassWorkspaceCompiler {
     };
 
     return sass.compileString(this.mainScss.content, opts).css;
+  }
+
+  /**
+   * Generates the zip file containing the theme workspace and triggers a download in the browser.
+   *
+   * @param {string} [fileName='pillarbox-theme.zip'] The name for the downloaded zip file.
+   *
+   * @returns {Promise<void>} A promise that resolves when the download has been triggered.
+   */
+  async download(fileName = 'pillarbox-theme.zip') {
+    await new ZipWorkspace(this.workspace).download(fileName);
   }
 }
