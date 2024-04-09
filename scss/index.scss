@@ -16,6 +16,11 @@
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --button-background: #40729d;
+  --button-hover-background: #305273;
+  --button-color: #fff;
+  --button-border-radius: 0.5em;
 }
 
 html,
@@ -81,6 +86,12 @@ footer {
   }
 }
 
+.craft-title-container {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
 /*
  * TODO: Adjust .monaco-container dimensions to ensure full parent coverage.
  *
@@ -92,4 +103,18 @@ footer {
 .monaco-container {
   width: 100%;
   height: 100%;
+}
+
+#download {
+  padding: 1em;
+  color: var(--button-foreground);
+  background: var(--button-background);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#download:hover {
+  background-color: var(--button-hover-background);
 }

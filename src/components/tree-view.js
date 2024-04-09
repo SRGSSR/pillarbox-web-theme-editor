@@ -12,11 +12,19 @@ import { partMap } from './component-utils.js';
  *
  * @fires TreeView#selected Dispatched when a non-folder item is clicked, with the item's data as detail.
  *
+ * @property {Array<TreeItem>} items Holds the tree structure data.
+ *
  * @part item - The item element.
  * @part item-name - The element displaying the item's name.
  * @part root - The root element of the tree.
  *
- * @property {Array<TreeItem>} items Holds the tree structure data.
+ * @cssproperty [--tree-background-color=#333] - The background color of the tree component.
+ * @cssproperty [--tree-item-hover-color=#555] - The background color of a tree item when hovered.
+ * @cssproperty [--tree-item-selected-color=#666] - The background color of a tree item when selected.
+ * @cssproperty [--tree-folder-icon='📁'] - The icon used for folders in the tree.
+ * @cssproperty [--tree-file-icon='📄'] - The icon used for files in the tree.
+ * @cssproperty [--tree-icon-size=1em] - The size of the icons in the tree.
+ * @cssproperty [--tree-indentation=1.5em] - The indentation size for nested items in the tree.
  *
  * @example
  * // Example of setting `items` for the TreeView component:
@@ -33,11 +41,9 @@ import { partMap } from './component-utils.js';
 class TreeView extends LitElement {
   static styles = unsafeCSS(treeViewStyle);
 
-  static get properties() {
-    return {
-      items: { type: Array }
-    };
-  }
+  static properties = {
+    items: { type: Array }
+  };
 
   constructor() {
     super();
@@ -103,6 +109,7 @@ customElements.define('tree-view', TreeView);
  * @typedef {Object} TreeItem
  * @property {string} name The name of the item.
  * @property {string} type The type of the item, typically 'folder' or 'file'.
+ * @property {string} content The content of this item.
  * @property {boolean} [closed=true] (Optional) Whether the item is closed or opened (applies only to folders).
  * @property {TreeItem[]} [children] (Optional) Array of child items if this is a folder.
  */

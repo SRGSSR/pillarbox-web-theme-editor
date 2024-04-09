@@ -4,18 +4,6 @@ import * as monaco from 'monaco-editor';
 import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
 
-const initialStyle = `
-/* Turn the progress bar white */
-.pillarbox-js .vjs-play-progress { 
-  color: white;
-  background-color: white; 
-}
-
-/* Show the scrubber */
-.pillarbox-js .vjs-play-progress::before {
-  font-size: 0.9em;
-}`.trim();
-
 self.MonacoEnvironment = {
   getWorker: function(_, label) {
     if (label === 'css' || label === 'scss' || label === 'less') {
@@ -44,6 +32,14 @@ class CssEditor extends LitElement {
   static properties = {
     theme: { type: String }
   };
+
+  /**
+   * Holds the initial value passed to this css editor.
+   *
+   * @type string
+   * @private
+   */
+  #initialValue = '';
 
   constructor() {
     super();
@@ -93,7 +89,20 @@ class CssEditor extends LitElement {
    * @returns {String} The current content of the editor.
    */
   getValue() {
-    return this.editor ? this.editor.getValue() : initialStyle;
+    return this.editor ? this.editor.getValue() : this.#initialValue;
+  }
+
+  /**
+   * Set the new content of the Monaco Editor.
+   *
+   * @param value {string} The new content fo the editor.
+   */
+  setValue(value) {
+    if (!this.editor) {
+      this.#initialValue = value;
+    } else {
+      this.editor.setValue(value);
+    }
   }
 
   /**
@@ -104,8 +113,8 @@ class CssEditor extends LitElement {
     super.firstUpdated(_changedProperties);
 
     this.editor = monaco.editor.create(this.container.value, {
-      value: initialStyle,
-      language: 'css',
+      value: this.#initialValue,
+      language: 'scss',
       theme: this.getTheme(),
       automaticLayout: true,
       fixedOverflowWidgets: true,

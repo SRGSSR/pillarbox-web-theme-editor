@@ -19,7 +19,15 @@
 <main>
   <resizable-split-view>
     <section slot="left">
-      <h2>Craft your theme</h2>
+      <div class="craft-title-container">
+        <h2>Craft your theme</h2>
+        <toggle-pane-button title="Select a file to edit" id="navigation-button">
+          <tree-view id="navigation"></tree-view>
+        </toggle-pane-button>
+        <button id="download">
+          Export as .zip
+        </button>
+      </div>
       <css-editor id="editor"></css-editor>
     </section>
     <section slot="right">

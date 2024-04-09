@@ -14,6 +14,7 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
+  background-color: var(--tree-background-color);
 }
 
 [part~="item"] {
@@ -59,7 +60,6 @@
 }
 
 /* Optional: Add a "selected" class to items when clicked to highlight the current selection */
-
 [part~="item-name"].selected {
   background-color: var(--tree-item-selected-color);
 }

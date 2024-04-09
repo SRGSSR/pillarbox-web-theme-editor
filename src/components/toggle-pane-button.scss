@@ -1,0 +1,57 @@
+:host {
+  --button-background: #40729d;
+  --button-hover-background: #305273;
+  --button-color: #fff;
+  --button-border-radius: 0.5em;
+  --popup-background: #333;
+  --popup-border: 1px solid #666;
+  --popup-border-radius: 0.5em;
+  --popup-z-index: 1;
+}
+
+[part="button"] {
+  position: relative; /* Needed for the chevron */
+  padding: 1em;
+  color: var(--button-foreground);
+  background: var(--button-background);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+[part="button"]::after {
+  display: inline-block;
+  width: 0.3em;
+  height: 0.3em;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: translate(50%, -50%) rotate(45deg);
+  transition: transform 0.3s ease;
+  content: "";
+  margin-inline: 0.5em;
+}
+
+[part="button"]:hover {
+  background-color: var(--button-hover-background);
+}
+
+[part="popup"] {
+  position: absolute;
+  z-index: var(--popup-z-index);
+  display: none;
+  margin-top: 5px;
+  padding: 0.7em;
+  background: var(--popup-background);
+  border: var(--popup-border);
+  border-radius: var(--popup-border-radius);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+}
+
+:host([opened]) [part="popup"] {
+  display: block;
+}
+
+:host([opened]) [part="button"]::after {
+  transform: translate(50%, -50%) rotate(225deg);
+}
