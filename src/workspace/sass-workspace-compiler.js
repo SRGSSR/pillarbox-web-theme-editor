@@ -55,12 +55,14 @@ export class SassWorkspaceCompiler {
   /**
    * Compiles the main SCSS file into CSS.
    *
+   * @param {Boolean} [compressed=true]  whether the output css will be compressed or not.
+   *
    * @returns {string} The compiled CSS.
    */
-  compile() {
+  compile(compressed = true) {
     const opts = {
       importer: this.#importer,
-      style: 'compressed'
+      style: compressed ? 'compressed' : 'expanded'
     };
 
     return sass.compileString(this.mainScss.content, opts).css;
