@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { css, html, LitElement } from 'lit';
 import pillarbox from '@srgssr/pillarbox-web';
 
 /**
@@ -18,30 +18,40 @@ import pillarbox from '@srgssr/pillarbox-web';
 class PreviewBox extends LitElement {
   static properties = {
     appliedCss: { type: String },
-    src: { type: String },
+    mediaSrc: { type: String },
     type: { type: String }
   };
 
+  static styles = css`
+    .player-container {
+      width: 100%;
+      height: 100%;
+    }
+  `;
+
   constructor() {
     super();
-    this.src = 'urn:rts:video:14318206';
+    this.mediaSrc = 'urn:rts:video:14318206';
     this.type = 'srgssr/urn';
   }
 
   render() {
+    // TODO Remove the player container once this is resolved: https://github.com/videojs/video.js/pull/8679
     return html`
       <style>${this.appliedCss}</style>
-      <video id="preview-player"
-             class="pillarbox-js"
-             controls crossOrigin="anonymous">
-      </video>
+      <div class="player-container">
+        <video id="preview-player"
+               class="pillarbox-js"
+               controls crossOrigin="anonymous">
+        </video>
+      </div>
     `;
   }
 
   updated(_changedProperties) {
     super.firstUpdated(_changedProperties);
 
-    if (['src', 'type'].some(property => _changedProperties.has(property))) {
+    if (['mediaSrc', 'type'].some(property => _changedProperties.has(property))) {
       this.player?.dispose();
 
       const el = this.shadowRoot.getElementById('preview-player');
@@ -52,7 +62,7 @@ class PreviewBox extends LitElement {
       });
 
       this.player.src({
-        src: this.src,
+        src: this.mediaSrc,
         type: this.type,
         disableTrackers: true
       });

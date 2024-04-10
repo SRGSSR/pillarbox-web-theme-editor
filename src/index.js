@@ -37,6 +37,6 @@ sourceInput.addEventListener('keyup', (event) => {
   const src = event.target.value;
 
   if (event.key === 'Enter' && src) {
-    preview.src = src;
+    preview.mediaSrc = src;
   }
 });
