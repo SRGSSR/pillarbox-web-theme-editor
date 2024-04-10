@@ -30,9 +30,12 @@ describe('PreviewBox Component', () => {
   it('initializes pillarbox with correct parameters', () => {
     const pillarboxMock = vi.mocked(pillarbox);
 
-    expect(pillarboxMock)
-      .toHaveBeenCalledWith(expect.anything(), { muted: true });
+    expect(pillarboxMock).toHaveBeenCalledWith(expect.anything(), {
+      muted: true,
+      restoreEl: true
+    });
     expect(pillarboxMock.mock.instances[0].srcSpy).toHaveBeenCalledWith({
+      disableTrackers: true,
       src: 'urn:rts:video:14318206',
       type: 'srgssr/urn'
     });
