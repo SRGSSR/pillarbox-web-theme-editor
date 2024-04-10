@@ -19,7 +19,7 @@
 <main>
   <resizable-split-view>
     <section slot="left">
-      <div class="craft-title-container">
+      <div class="section-title-container">
         <h2>Craft your theme</h2>
         <toggle-pane-button title="Select a file to edit" id="navigation-button">
           <tree-view id="navigation"></tree-view>
@@ -31,7 +31,12 @@
       <css-editor id="editor"></css-editor>
     </section>
     <section slot="right">
-      <h2>Live Canvas Preview</h2>
+      <div class="section-title-container">
+        <h2>Live Canvas Preview</h2>
+        <toggle-pane-button title="Change the media" label="Change the media" id="load-media-button">
+          <input id="src-input" type="text" placeholder="Enter a URN..." />
+        </toggle-pane-button>
+      </div>
       <preview-box id="preview"></preview-box>
     </section>
   </resizable-split-view>

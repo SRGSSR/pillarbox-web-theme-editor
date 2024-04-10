@@ -1,5 +1,4 @@
 import { html, LitElement } from 'lit';
-import { createRef, ref } from 'lit/directives/ref.js';
 import pillarbox from '@srgssr/pillarbox-web';
 
 /**
@@ -10,49 +9,54 @@ import pillarbox from '@srgssr/pillarbox-web';
  * @element preview-box
  *
  * @property {String} appliedCss CSS styles that can be applied to the video player.
+ * @property {String} [src='urn:rts:video:14318206'] The media to be loaded by the player,
+ * @property {String} [type='srgssr/urn'] The type of media to be loaded.
  *
  * @example
  * <preview-box></preview-box>
  */
 class PreviewBox extends LitElement {
   static properties = {
-    appliedCss: { type: String }
+    appliedCss: { type: String },
+    src: { type: String },
+    type: { type: String }
   };
 
   constructor() {
     super();
-    this.pillarboxRef = createRef();
+    this.src = 'urn:rts:video:14318206';
+    this.type = 'srgssr/urn';
   }
 
-  /**
-   * Renders the video player with applied custom CSS and the pillarbox library functionalities.
-   *
-   * @returns {TemplateResult} The LitElement `html` template result.
-   */
   render() {
     return html`
       <style>${this.appliedCss}</style>
-      <video id="main-player"
+      <video id="preview-player"
              class="pillarbox-js"
-             controls crossOrigin="anonymous"
-             ${ref(this.pillarboxRef)}>
+             controls crossOrigin="anonymous">
       </video>
     `;
   }
 
-  /**
-   * Lifecycle callback that is called after the component's first render.
-   * It initializes the pillarbox player with a specific video source.
-   */
-  firstUpdated(_changedProperties) {
+  updated(_changedProperties) {
     super.firstUpdated(_changedProperties);
 
-    // Initializes pillarbox with the video element and sets the video source.
-    this.player = pillarbox(this.pillarboxRef.value, { muted: true });
-    this.player.src({
-      src: 'urn:rts:video:14318206',
-      type: 'srgssr/urn'
-    });
+    if (['src', 'type'].some(property => _changedProperties.has(property))) {
+      this.player?.dispose();
+
+      const el = this.shadowRoot.getElementById('preview-player');
+
+      this.player = pillarbox(el, {
+        muted: true,
+        restoreEl: true
+      });
+
+      this.player.src({
+        src: this.src,
+        type: this.type,
+        disableTrackers: true
+      });
+    }
   }
 }
 

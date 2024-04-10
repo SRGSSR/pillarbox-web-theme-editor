@@ -12,6 +12,7 @@ const navigationButton = document.getElementById('navigation-button');
 const editor = document.getElementById('editor');
 const preview = document.getElementById('preview');
 const downloadButton = document.getElementById('download');
+const sourceInput = document.getElementById('src-input');
 
 navigation.items = sassCompiler.workspace;
 navigationButton.label = currentItem.name;
@@ -31,3 +32,11 @@ editor.addEventListener('value-changed', (event) => {
 });
 
 downloadButton.addEventListener('click', () => sassCompiler.download());
+
+sourceInput.addEventListener('keyup', (event) => {
+  const src = event.target.value;
+
+  if (event.key === 'Enter' && src) {
+    preview.src = src;
+  }
+});
