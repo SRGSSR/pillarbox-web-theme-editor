@@ -5,8 +5,8 @@
   <link rel="icon" type="image/svg+xml" href="./favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pillarbox Theme Editor</title>
-  <script type="module" crossorigin src="./assets/index-LMdBMfgq.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-leNuStOW.css">
+  <script type="module" crossorigin src="./assets/index-BEfF4cGE.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CsUvDPeE.css">
 </head>
 <body>
 <header>
@@ -19,7 +19,7 @@
 <main>
   <resizable-split-view>
     <section slot="left">
-      <div class="craft-title-container">
+      <div class="section-title-container">
         <h2>Craft your theme</h2>
         <toggle-pane-button title="Select a file to edit" id="navigation-button">
           <tree-view id="navigation"></tree-view>
@@ -31,7 +31,12 @@
       <css-editor id="editor"></css-editor>
     </section>
     <section slot="right">
-      <h2>Live Canvas Preview</h2>
+      <div class="section-title-container">
+        <h2>Live Canvas Preview</h2>
+        <toggle-pane-button title="Change the media" label="Change the media" id="load-media-button">
+          <input id="src-input" type="text" placeholder="Enter a URN..." />
+        </toggle-pane-button>
+      </div>
       <preview-box id="preview"></preview-box>
     </section>
   </resizable-split-view>
