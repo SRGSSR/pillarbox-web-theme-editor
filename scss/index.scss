@@ -107,9 +107,9 @@ footer {
   height: 100%;
 }
 
-#download {
+.pbte-btn, .pbte-alert-btn {
   padding: 1em;
-  color: var(--button-foreground);
+  color: var(--button-color);
   background: var(--button-background);
   border: none;
   border-radius: var(--button-border-radius);
@@ -117,8 +117,16 @@ footer {
   transition: background-color 0.3s ease;
 }
 
-#download:hover {
+.pbte-btn:hover {
   background-color: var(--button-hover-background);
+}
+
+.pbte-btn.alert {
+  background: #9D4040;
+}
+
+.pbte-btn.alert:hover {
+  background: #733030;
 }
 
 input {
@@ -129,6 +137,10 @@ input {
   background-color: var(--app-background-color);
   border: none;
   outline: none;
+}
+
+confirmation-dialog {
+  max-width: 360px;
 }
 
 *:not(:defined) {
