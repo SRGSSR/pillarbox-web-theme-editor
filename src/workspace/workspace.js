@@ -1,6 +1,6 @@
-import pillarboxScssWorkspace from '../assets/pillarbox-scss-workspace.json';
 import videoJsStyle from 'video.js/dist/video-js.css?inline';
 import { SassWorkspaceCompiler } from './sass-workspace-compiler.js';
+import WorkspaceProvider from './workspace-provider.js';
 
 /**
  * Instance of `SassWorkspaceCompiler` dedicated to compiling the sass styles for pillarbox
@@ -11,7 +11,7 @@ import { SassWorkspaceCompiler } from './sass-workspace-compiler.js';
  * @see SassWorkspaceCompiler
  */
 export default new SassWorkspaceCompiler(
-  pillarboxScssWorkspace,
+  WorkspaceProvider.loadWorkspace(),
   'pillarbox.scss',
   {
     '../node_modules/video.js/dist/video-js': {

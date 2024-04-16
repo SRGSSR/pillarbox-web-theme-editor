@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "node .prebuild.js",
     "build": "vite build",
-    "test": "vitest run --coverage --reporter=verbose --silent",
+    "test": "npm run prebuild && vitest run --coverage --reporter=verbose --silent",
     "eslint": "eslint {src,test}/**/*.js",
     "eslint:fix": "eslint {src,test}/**/*.js --fix",
     "outdated": "npm outdated",

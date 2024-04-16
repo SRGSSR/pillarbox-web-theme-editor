@@ -24,9 +24,20 @@
         <toggle-pane-button title="Select a file to edit" id="navigation-button">
           <tree-view id="navigation"></tree-view>
         </toggle-pane-button>
-        <button id="download">
+        <button class="pbte-btn" id="download-button">
           Export as .zip
         </button>
+        <button class="pbte-btn alert" id="reset-button">
+          Reset changes
+        </button>
+        <confirmation-dialog id="reset-confirmation-dialog">
+          <span slot="title">Reset Your Workspace?</span>
+          <span slot="content">
+            Are you sure you want to reset your workspace? All unsaved changes will be lost and the
+            theme will revert to the default settings. This action cannot be undone.
+          </span>
+          <span slot="accept">Confirm Reset</span>
+        </confirmation-dialog>
       </div>
       <css-editor id="editor"></css-editor>
     </section>
