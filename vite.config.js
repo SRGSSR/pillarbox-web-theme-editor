@@ -16,10 +16,6 @@ export default defineConfig({
       {
         find: /^monaco-editor$/,
         replacement: __dirname + '/node_modules/monaco-editor/esm/vs/editor/editor.api'
-      },
-      {
-        find: /^@srgssr\/pillarbox-web$/,
-        replacement: __dirname + '/node_modules/@srgssr/pillarbox-web/dist/pillarbox.es.js'
       }
     ]
   },
