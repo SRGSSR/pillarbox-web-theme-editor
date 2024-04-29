@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/svg+xml" href="./favicon.ico"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Theme Editor</title>
+  <script type="module" crossorigin src="./assets/index-qcLNEFEL.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BoAn1cZf.css">
+</head>
+<body>
+<header>
+  <h1><img src="./pillarbox-logo.webp" class="logo" alt="Pillarbox logo"/> Pillarbox Theme Editor</h1>
+  <p>
+    Welcome to the Pillarbox Theme Editor: a dynamic web application designed to streamline and enhance your theme
+    creation process.<br>Design, customize, and generate themes that resonate with your unique brand identity.
+  </p>
+</header>
+<main>
+  <resizable-split-view>
+    <section slot="left">
+      <div class="section-title-container">
+        <h2>Craft your theme</h2>
+        <toggle-pane-button title="Select a file to edit" id="navigation-button">
+          <tree-view id="navigation"></tree-view>
+        </toggle-pane-button>
+        <button class="pbte-btn" id="download-button">
+          Export as .zip
+        </button>
+        <button class="pbte-btn alert" id="reset-button">
+          Reset changes
+        </button>
+        <confirmation-dialog id="reset-confirmation-dialog">
+          <span slot="title">Reset Your Workspace?</span>
+          <span slot="content">
+            Are you sure you want to reset your workspace? All unsaved changes will be lost and the
+            theme will revert to the default settings. This action cannot be undone.
+          </span>
+          <span slot="accept">Confirm Reset</span>
+        </confirmation-dialog>
+      </div>
+      <css-editor id="editor"></css-editor>
+    </section>
+    <section slot="right">
+      <div class="section-title-container">
+        <h2>Live Canvas Preview</h2>
+        <toggle-pane-button title="Change the media" label="Change the media" id="load-media-button">
+          <input id="src-input" type="text" placeholder="Enter a URN..." />
+        </toggle-pane-button>
+      </div>
+      <preview-box id="preview"></preview-box>
+    </section>
+  </resizable-split-view>
+</main>
+<footer>
+  <a class="logo" href="https://www.srgssr.ch/en" target="_blank">
+    <img alt="SRG SSR" src="./srgssr-logo.png">
+  </a>
+  <span>Swiss Broadcasting Corporation</span>
+</footer>
+</body>
+</html>
