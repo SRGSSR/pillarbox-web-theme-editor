@@ -10,14 +10,14 @@
     "eslint": "eslint {src,test}/**/*.js",
     "eslint:fix": "eslint {src,test}/**/*.js --fix",
     "outdated": "npm outdated",
-    "start": "npm run prebuild && vite --port 9696",
+    "start": "npm run prebuild && vite --port 9696 --host --open",
     "stylelint": "stylelint {src,scss}/**/*.{css,scss,js}",
     "stylelint:fix": "stylelint {src,scss}/**/*.{css,scss,js} --fix",
     "prepare": "husky",
     "preview": "vite preview --port 9696"
   },
   "dependencies": {
-    "@srgssr/pillarbox-web": "^1.12.0",
+    "@srgssr/pillarbox-web": "^1.12.2",
     "jszip": "^3.10.1",
     "lit": "^3.1.2",
     "monaco-editor": "^0.47.0",

@@ -25,35 +25,25 @@ Ensure your system is equipped with:
 
 To get started with the Theme Editor on your local machine, follow these steps:
 
-1. Configure the `@srgssr` registry in your `.npmrc` file:
-
-    ```text
-    //npm.pkg.github.com/:_authToken=TOKEN
-    @srgssr:registry=https://npm.pkg.github.com
-    ```
-
-   Generate an authentication token by following this
-   guide: [Authenticating with a personal access token][git-auth-token].
-
-2. Clone the repository:
+1. Clone the repository:
 
     ```shell
     git clone https://github.com/SRGSSR/pillarbox-web-theme-editor.git
     ```
 
-3. Install dependencies:
+2. Install dependencies:
 
     ```shell
     npm install
     ```
 
-4. Launch the development server:
+3. Launch the development server:
 
     ```shell
     npm run start
     ```
 
-5. Navigate to `http://localhost:9696` in your browser.
+4. Navigate to `http://localhost:9696` in your browser.
 
    You'll be greeted by an intuitive interface featuring a CSS editor on the left and a live preview
    pane with a video player on the right, allowing for real-time theme customization.
