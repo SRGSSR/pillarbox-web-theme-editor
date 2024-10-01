@@ -1,13 +1,14 @@
 ## Description
 
-> Please provide a brief summary of the changes made. Please explain why
-> this change was necessary. Was there a problem or an issue this change
-> will address? What will be improved with this change?
+<!--
+Please provide a brief summary of the changes made. Please explain why this change was necessary. Was there a problem or an issue this change will address? What will be improved with this change?
+-->
 
 ## Changes Made
 
-> Please detail the modifications made. This could include areas such as
-> code, documentation, structure, or formatting.
+<!--
+Please detail the modifications made. This could include areas such as code, documentation, structure, or formatting.
+-->
 
 ## Checklist
 
