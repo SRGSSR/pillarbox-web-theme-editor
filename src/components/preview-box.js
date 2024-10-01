@@ -9,7 +9,7 @@ import pillarbox from '@srgssr/pillarbox-web';
  * @element preview-box
  *
  * @property {String} appliedCss CSS styles that can be applied to the video player.
- * @property {String} [src='urn:rts:video:14318206'] The media to be loaded by the player,
+ * @property {String} [src='urn:swi:video:49122298'] The media to be loaded by the player,
  * @property {String} [type='srgssr/urn'] The type of media to be loaded.
  *
  * @example
@@ -31,7 +31,7 @@ class PreviewBox extends LitElement {
 
   constructor() {
     super();
-    this.mediaSrc = 'urn:rts:video:14318206';
+    this.mediaSrc = 'urn:swi:video:49122298';
     this.type = 'srgssr/urn';
   }
 
