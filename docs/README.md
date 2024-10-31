@@ -8,8 +8,7 @@ video.js with additional functionalities. With this editor, you're equipped to d
 and generate themes that resonate with your unique brand identity, ensuring a cohesive and engaging
 user experience across your video content.
 
-Experience the latest version of the Theme Editor in action
-here: https://srgssr.github.io/pillarbox-web-theme-editor/
+Experience the latest version of the Theme Editor in action here: https://editor.pillarbox.ch
 
 ![Pillarbox-theme-editor](README-images/screenshot-theme-editor.png)
 
