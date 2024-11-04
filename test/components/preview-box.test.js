@@ -36,7 +36,7 @@ describe('PreviewBox Component', () => {
     });
     expect(pillarboxMock.mock.instances[0].srcSpy).toHaveBeenCalledWith({
       disableTrackers: true,
-      src: 'urn:swi:video:49122298',
+      src: 'urn:srf:video:05457f66-fd67-4131-8e0a-6d85743efc39',
       type: 'srgssr/urn'
     });
   });

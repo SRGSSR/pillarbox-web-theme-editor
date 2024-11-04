@@ -14,7 +14,7 @@ export default new SassWorkspaceCompiler(
   WorkspaceProvider.loadWorkspace(),
   'pillarbox.scss',
   {
-    '../node_modules/video.js/dist/video-js': {
+    'video.js/dist/video-js': {
       content: videoJsStyle,
       name: 'video-js.css',
       type: 'css'

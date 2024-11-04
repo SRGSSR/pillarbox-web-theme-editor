@@ -46,7 +46,7 @@ describe('CssEditor', () => {
   });
 
   it('should apply the correct theme based on system preference', () => {
-    expect(element.getTheme()).toBe('vs-dark' || 'vs-light');
+    expect(['vs-dark', 'vs-light']).toContain(element.getTheme());
   });
 
   it('should emit a change event when the editor content changes', async() => {

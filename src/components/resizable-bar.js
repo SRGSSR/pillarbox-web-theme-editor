@@ -35,10 +35,8 @@ class ResizableBar extends LitElement {
    * Initializes the resize operation. This method adds event listeners for
    * pointer movements and releases, and dispatches a `resize-move` event
    * when the user moves the bar around.
-   *
-   * @param {PointerEvent} e - The pointer event that initiated the resize.
    */
-  initResize(e) {
+  initResize() {
     const doResize = (e) => {
       /**
        * Custom event dispatched by the component as the user resizes.
