@@ -2,15 +2,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import '../../src/components/preview-box.js';
 import pillarbox from '@srgssr/pillarbox-web';
 
-vi.mock('@srgssr/pillarbox-web', () => {
-  const src = vi.fn(); // Set up the spy for the 'src' method
+const srcSpy = vi.fn();
 
+vi.mock('@srgssr/pillarbox-web', () => {
   return {
     __esModule: true,
     default: vi.fn().mockImplementation(() => ({
-      src // Return this spy when the pillarbox function is called
-    })),
-    srcSpy: src // Expose the spy for assertions
+      src: srcSpy
+    }))
   };
 });
 
@@ -34,7 +33,7 @@ describe('PreviewBox Component', () => {
       muted: true,
       restoreEl: true
     });
-    expect(pillarboxMock.mock.instances[0].srcSpy).toHaveBeenCalledWith({
+    expect(srcSpy).toHaveBeenCalledWith({
       disableTrackers: true,
       src: 'urn:srf:video:05457f66-fd67-4131-8e0a-6d85743efc39',
       type: 'srgssr/urn'
