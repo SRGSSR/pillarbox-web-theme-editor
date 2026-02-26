@@ -109,12 +109,10 @@ For more details on installing and using the `.nvmrc` file see the official
 This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for more details.
 
 [pillarbox-web]: https://github.com/SRGSSR/pillarbox-web
-
 [git-auth-token]: https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token
-
 [lit]:https://lit.dev/
-
 [monaco-editor]: https://github.com/microsoft/monaco-editor
-
 [vite]: https://vitejs.dev/
+[nvmrc-doc]: https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc
+
 
