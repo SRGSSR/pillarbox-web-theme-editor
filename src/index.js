@@ -4,63 +4,38 @@ import './components/toggle-pane-button.js';
 import './components/confirmation-dialog.js';
 import './components/preview-box.js';
 import './components/css-editor.js';
+import './components/editor-tabs.js';
 import sassCompiler from './workspace/workspace.js';
-import WorkspaceProvider from './workspace/workspace-provider.js';
+import TabManager from './app/tab-manager.js';
+import initEditorController from './app/editor-controller.js';
+import initLayoutController from './app/layout-controller.js';
+import initPreviewController from './app/preview-controller.js';
 
-// Preview Initialisation
-const preview = document.getElementById('preview');
-const sourceInput = document.getElementById('src-input');
+const tabManager = new TabManager(sassCompiler.workspace);
 
-sourceInput.addEventListener('keyup', (event) => {
-  const src = event.target.value;
-
-  if (event.key === 'Enter' && src) {
-    preview.mediaSrc = src;
-  }
+initLayoutController({
+  split: document.getElementById('main-split'),
+  sidebar: document.getElementById('sidebar'),
+  sidebarButton: document.getElementById('toggle-sidebar-button'),
+  previewButton: document.getElementById('toggle-preview-button'),
+  dockButton: document.getElementById('dock-button')
 });
 
-preview.appliedCss = sassCompiler.compile();
-
-// Editor Initialisation
-const editor = document.getElementById('editor');
-let currentItem = sassCompiler.mainScss;
-
-editor.setValue(sassCompiler.mainScss.content);
-editor.addEventListener('value-changed', (event) => {
-  currentItem.content = event.detail.value;
-  preview.appliedCss = sassCompiler.compile();
-  WorkspaceProvider.saveWorkspace(sassCompiler.workspace);
+initPreviewController({
+  compiler: sassCompiler,
+  preview: document.getElementById('preview'),
+  navigation: document.getElementById('navigation'),
+  downloadButton: document.getElementById('download-button'),
+  resetButton: document.getElementById('reset-button'),
+  resetDialog: document.getElementById('reset-confirmation-dialog')
 });
 
-// Navigation Control
-const navigation = document.getElementById('navigation');
-const navigationButton = document.getElementById('navigation-button');
-
-navigation.items = sassCompiler.workspace;
-navigation.addEventListener('selected', (event) => {
-  currentItem = event.detail;
-  navigationButton.label = currentItem.name;
-  editor.setValue(currentItem.content);
-  navigationButton.opened = false;
-});
-
-navigationButton.label = sassCompiler.mainScss.name;
-
-// Download Control
-const downloadButton = document.getElementById('download-button');
-
-downloadButton.addEventListener('click', () => sassCompiler.download());
-
-// Reset Control
-const resetButton = document.getElementById('reset-button');
-const confirmationDialog = document.getElementById('reset-confirmation-dialog');
-
-resetButton.addEventListener('click', () => {
-  confirmationDialog.toggle();
-});
-confirmationDialog.addEventListener('close', (event) => {
-  if (event.detail.accepted) {
-    WorkspaceProvider.clear();
-    window.location.reload();
-  }
+initEditorController({
+  compiler: sassCompiler,
+  tabManager,
+  navigation: document.getElementById('navigation'),
+  tabs: document.getElementById('tabs'),
+  editor: document.getElementById('editor'),
+  preview: document.getElementById('preview'),
+  editorPane: document.getElementById('editor-pane')
 });

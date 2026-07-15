@@ -1,0 +1,64 @@
+@use 'material-symbols' as ms;
+
+:host {
+  --tabs-background: #1e2126;
+  --tab-background: transparent;
+  --tab-active-background: #17191d;
+  --tab-color: rgb(235 238 241 / 55%);
+  --tab-active-color: rgb(235 238 241 / 92%);
+  --tab-active-border: #6fa8d8;
+  --tab-border-color: #33383f;
+
+  display: block;
+}
+
+[part~="tabs"] {
+  display: flex;
+  overflow-x: auto;
+  background: var(--tabs-background);
+}
+
+[part~="tab"] {
+  display: inline-flex;
+  gap: 0.5em;
+  align-items: center;
+  padding: 0.5em 0.75em;
+  color: var(--tab-color);
+  font-size: 0.85em;
+  font-family: inherit;
+  white-space: nowrap;
+  background: var(--tab-background);
+  border: none;
+  border-top: 2px solid transparent;
+  border-right: 1px solid var(--tab-border-color);
+  cursor: pointer;
+}
+
+[part~="tab"][part~="active"] {
+  color: var(--tab-active-color);
+  background: var(--tab-active-background);
+  border-top-color: var(--tab-active-border);
+}
+
+[part~="tab-close"] {
+  @include ms.material-symbols;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+  padding: 0;
+  color: inherit;
+  font-size: 1em;
+  background: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+[part~="tab-close"]:hover {
+  background: rgb(255 255 255 / 12%);
+  opacity: 1;
+}

@@ -25,6 +25,12 @@ describe('WorkspaceProvider', () => {
     expect(WorkspaceProvider.loadWorkspace()).toEqual(mockWorkspace);
   });
 
+  it('loads the default workspace when the stored value is corrupted', () => {
+    localStorage.setItem('pbte-workspace', '{not json');
+
+    expect(WorkspaceProvider.loadWorkspace()).toEqual(pillarboxScssWorkspace);
+  });
+
   it('saves the workspace correctly to local storage', () => {
     const mockWorkspace = {
       id: 2,

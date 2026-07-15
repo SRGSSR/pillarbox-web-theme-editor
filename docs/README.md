@@ -44,9 +44,6 @@ To get started with the Theme Editor on your local machine, follow these steps:
 
 4. Navigate to `http://localhost:9696` in your browser.
 
-   You'll be greeted by an intuitive interface featuring a CSS editor on the left and a live preview
-   pane with a video player on the right, allowing for real-time theme customization.
-
 ## Documentation
 
 The Pillarbox-web Theme Editor is crafted with pure JavaScript, employing [Lit][lit] for robust

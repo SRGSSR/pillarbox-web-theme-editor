@@ -80,4 +80,52 @@ describe('TreeView', () => {
     // Check if "selected" event is dispatched with correct detail
     expect(selectedEventDetail).toEqual({ name: 'File', type: 'file' });
   });
+
+  it('marks only the selected item with the selected part token', async() => {
+    const items = [
+      { name: 'File A', type: 'file' },
+      { name: 'File B', type: 'file' }
+    ];
+
+    element.items = items;
+    element.selected = items[1];
+    await element.updateComplete;
+
+    const selected = element.shadowRoot
+      .querySelectorAll('[part~="selected"]');
+
+    expect(selected.length).toBe(1);
+    expect(selected[0].textContent).toContain('File B');
+  });
+
+  it('marks errored items and their ancestor folders with the error part', async() => {
+    const file = { name: 'File', type: 'scss' };
+    const items = [
+      { name: 'Folder', type: 'folder', children: [file] },
+      { name: 'Other', type: 'scss' }
+    ];
+
+    element.items = items;
+    element.errors = [file];
+    await element.updateComplete;
+
+    const errored = element.shadowRoot.querySelectorAll('[part~="error"]');
+
+    expect(errored.length).toBe(2);
+    expect(errored[0].textContent).toContain('Folder');
+    expect(errored[1].textContent).toContain('File');
+  });
+
+  it('clears the error part when errors are reset', async() => {
+    const items = [{ name: 'File', type: 'scss' }];
+
+    element.items = items;
+    element.errors = [items[0]];
+    await element.updateComplete;
+
+    element.errors = [];
+    await element.updateComplete;
+
+    expect(element.shadowRoot.querySelector('[part~="error"]')).toBeNull();
+  });
 });
