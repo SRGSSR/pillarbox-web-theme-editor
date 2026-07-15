@@ -46,7 +46,8 @@ To get started with the Theme Editor on your local machine, follow these steps:
 
    You'll be greeted by an IDE-style workbench: a file tree on the left, a tabbed SCSS editor in
    the center and a live preview pane with a video player that can be hidden or docked to the
-   right or the bottom. The toolbar lets you export your theme as a zip archive.
+   right or the bottom. The toolbar lets you search SRG SSR medias to preview your theme on and
+   export your theme as a zip archive.
 
 ## Documentation
 

@@ -13,27 +13,28 @@ describe('UiState', () => {
       previewDock: 'bottom',
       previewVisible: true,
       sidebarCollapsed: false,
+      bu: 'srf',
       openTabs: [],
       activeTab: null
     });
   });
 
   it('only persists explicitly saved properties', () => {
-    UiState.save({ previewDock: 'right' });
+    UiState.save({ bu: 'rts' });
 
     const raw = JSON.parse(localStorage.getItem('pbte-ui-state'));
 
-    expect(raw).toEqual({ previewDock: 'right' });
+    expect(raw).toEqual({ bu: 'rts' });
   });
 
   it('merges saved partials over the defaults', () => {
     UiState.save({ previewDock: 'right' });
-    UiState.save({ sidebarCollapsed: true });
+    UiState.save({ bu: 'rts' });
 
     const state = UiState.load();
 
     expect(state.previewDock).toBe('right');
-    expect(state.sidebarCollapsed).toBe(true);
+    expect(state.bu).toBe('rts');
     expect(state.previewVisible).toBe(true);
   });
 

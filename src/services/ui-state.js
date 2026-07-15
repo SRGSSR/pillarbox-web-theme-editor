@@ -7,13 +7,14 @@ const DEFAULTS = {
   previewDock: 'bottom',
   previewVisible: true,
   sidebarCollapsed: false,
+  bu: 'srf',
   openTabs: [],
   activeTab: null
 };
 
 /**
  * Utility class for loading and saving the workbench UI state (layout,
- * open tabs) to local storage under a single key.
+ * business unit, open tabs) to local storage under a single key.
  *
  * @class UiState
  */
