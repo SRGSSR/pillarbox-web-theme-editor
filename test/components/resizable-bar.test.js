@@ -33,6 +33,7 @@ describe('ResizableBar', () => {
     // Create a spy for the dispatchEvent to listen for `resize-move` event
     const dispatchEventSpy = vi.spyOn(element, 'dispatchEvent');
     const testClientX = 100;
+    const testClientY = 50;
 
     // Simulate pointerdown to initialize resizing
     resizer.dispatchEvent(new PointerEvent('pointerdown', {
@@ -43,6 +44,7 @@ describe('ResizableBar', () => {
     // Simulate pointermove to trigger resize-move event
     document.dispatchEvent(new PointerEvent('pointermove', {
       clientX: testClientX,
+      clientY: testClientY,
       bubbles: true,
       composed: true
     }));
@@ -50,10 +52,21 @@ describe('ResizableBar', () => {
     // Check if the custom event was dispatched with the correct detail
     expect(dispatchEventSpy).toHaveBeenCalledWith(expect.objectContaining({
       type: 'resize-move',
-      detail: { clientX: testClientX }
+      detail: { clientX: testClientX, clientY: testClientY }
     }));
 
     // Cleanup
     dispatchEventSpy.mockRestore();
+  });
+
+  it('reflects a horizontal orientation by default', () => {
+    expect(element.getAttribute('orientation')).toBe('horizontal');
+  });
+
+  it('reflects the orientation property to an attribute', async() => {
+    element.orientation = 'vertical';
+    await element.updateComplete;
+
+    expect(element.getAttribute('orientation')).toBe('vertical');
   });
 });

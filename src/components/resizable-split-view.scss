@@ -6,6 +6,10 @@
   --left-panel-width: 50%;
 }
 
+:host([orientation="vertical"]) {
+  flex-direction: column;
+}
+
 ::slotted([slot="left"]), ::slotted([slot="right"]) {
   display: flex;
   flex-direction: column;
@@ -17,5 +21,14 @@
 }
 
 ::slotted([slot="right"]) {
+  flex: 1;
+}
+
+:host([collapsed]) resizable-bar,
+:host([collapsed]) ::slotted([slot="right"]) {
+  display: none;
+}
+
+:host([collapsed]) ::slotted([slot="left"]) {
   flex: 1;
 }

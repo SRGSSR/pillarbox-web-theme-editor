@@ -7,13 +7,19 @@ import pillarboxScssWorkspace from '../assets/pillarbox-scss-workspace.json';
  */
 class WorkspaceProvider {
   /**
-   * Loads the workspace from local storage.
+   * Loads the workspace from local storage, falling back to the bundled
+   * default workspace when nothing is stored or the value is corrupted.
    *
    * @static
    * @returns {Object} An object representing the workspace.
    */
   static loadWorkspace() {
-    return JSON.parse(localStorage.getItem('pbte-workspace')) || pillarboxScssWorkspace;
+    try {
+      return JSON.parse(localStorage.getItem('pbte-workspace')) ||
+        pillarboxScssWorkspace;
+    } catch {
+      return pillarboxScssWorkspace;
+    }
   }
 
   /**

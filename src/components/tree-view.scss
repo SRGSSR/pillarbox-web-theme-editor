@@ -1,11 +1,22 @@
+@use 'material-symbols' as ms;
+
 :host {
-  --tree-background-color: #242424;
-  --tree-item-hover-color: #444;
-  --tree-item-selected-color: #666;
-  --tree-folder-icon: '📁';
-  --tree-file-icon: '📄';
+  --tree-background-color: transparent;
+  --tree-item-hover-color: rgb(255 255 255 / 5%);
+  --tree-item-selected-color: rgb(111 168 216 / 22%);
+
+  /* Icons are ligature glyph names (strings), overridable from outside.
+   * The font itself must be registered by the host document — see
+   * _material-symbols.scss. */
+  --tree-icon-font: 'Material Symbols Outlined';
+  --tree-folder-icon: 'folder';
+  --tree-folder-open-icon: 'folder_open';
+  --tree-file-icon: 'draft';
+  --tree-file-css-icon: 'css';
+  --tree-file-js-icon: 'javascript';
   --tree-icon-size: 1em;
   --tree-indentation: 1.5em;
+  --tree-error-color: #e5534b;
 
   width: 100%;
 }
@@ -31,27 +42,36 @@
 }
 
 [part~="item-name"]::before {
-  display: inline-block;
-  width: var(--tree-icon-size);
-  height: var(--tree-icon-size);
-  margin-right: 0.5em;
-  line-height: var(--tree-icon-size);
-  text-align: center;
+  @include ms.material-symbols;
+
+  flex-shrink: 0;
+  margin-right: 0.4em;
+  font-size: calc(var(--tree-icon-size) * 1.25);
+  font-family: var(--tree-icon-font), serif;
+  opacity: 0.75;
+  content: var(--tree-file-icon);
 }
 
 [part~="item"][part~="folder"] > [part~="item-name"]::before {
+  content: var(--tree-folder-open-icon);
+}
+
+[part~="item"][part~="folder"][part~="closed"] > [part~="item-name"]::before {
   content: var(--tree-folder-icon);
 }
 
-[part~="item"]:not([part~="folder"]) > [part~="item-name"]::before {
-  content: var(--tree-file-icon);
+[part~="item"][part~="css"] > [part~="item-name"]::before {
+  content: var(--tree-file-css-icon);
+}
+
+[part~="item"][part~="js"] > [part~="item-name"]::before {
+  content: var(--tree-file-js-icon);
 }
 
 [part~="item-name"] {
   display: flex;
   align-items: center;
   padding: 0.1em 0.5em;
-  border-radius: 0.5em;
   transition: background-color 0.3s;
 }
 
@@ -59,7 +79,17 @@
   background-color: var(--tree-item-hover-color);
 }
 
-/* Optional: Add a "selected" class to items when clicked to highlight the current selection */
-[part~="item-name"].selected {
+/* A dot flagging items (and the folders holding them) that fail to compile */
+[part~="item"][part~="error"] > [part~="item-name"]::after {
+  flex-shrink: 0;
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 0.4em;
+  background: var(--tree-error-color);
+  border-radius: 50%;
+  content: '';
+}
+
+[part~="item"][part~="selected"] > [part~="item-name"] {
   background-color: var(--tree-item-selected-color);
 }

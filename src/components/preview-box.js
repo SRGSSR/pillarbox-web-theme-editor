@@ -22,10 +22,19 @@ class PreviewBox extends LitElement {
     type: { type: String }
   };
 
+  /*
+   * These defaults contain the player in the preview, but they live in
+   * a cascade layer while the applied theme is unlayered, so any rule
+   * of the theme wins.
+   */
   static styles = css`
-    .player-container {
-      width: 100%;
-      height: 100%;
+    @layer defaults {
+      #preview-player {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
     }
   `;
 
@@ -36,15 +45,12 @@ class PreviewBox extends LitElement {
   }
 
   render() {
-    // TODO Remove the player container once this is resolved: https://github.com/videojs/video.js/pull/8679
     return html`
       <style>${this.appliedCss}</style>
-      <div class="player-container">
-        <video id="preview-player"
-               class="pillarbox-js"
-               controls crossOrigin="anonymous">
-        </video>
-      </div>
+      <video id="preview-player"
+             class="pillarbox-js"
+             controls crossOrigin="anonymous">
+      </video>
     `;
   }
 

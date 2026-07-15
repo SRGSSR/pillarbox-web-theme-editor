@@ -1,18 +1,18 @@
 :host {
   --dialog-padding: 1em;
-  --dialog-background-color: #242424;
-  --dialog-border: 1px solid #666;
+  --dialog-background-color: #1e2126;
+  --dialog-border: 1px solid #33383f;
   --dialog-color: rgb(255 255 255 / 87%);
   --dialog-title-font-weight: 600;
-  --dialog-border-radius: 0.5em;
+  --dialog-border-radius: 6px;
   --dialog-max-width: 360px;
   --accept-button-background: #9D4040;
   --accept-button-hover-background: #733030;
   --cancel-button-background: rgb(255 255 255 / 0%);
-  --cancel-button-hover-background: rgb(255 255 255 / 20%);
-  --cancel-button-hover-color: rgb(0 0 0 / 87%);
-  --button-color: rgb(255 255 255 / 87%);
-  --button-border-radius: 0.5em;
+  --cancel-button-hover-background: rgb(255 255 255 / 10%);
+  --cancel-button-hover-color: rgb(235 238 241 / 92%);
+  --button-color: rgb(235 238 241 / 92%);
+  --button-border-radius: 4px;
 }
 
 dialog {
@@ -50,8 +50,11 @@ dialog::backdrop {
 }
 
 [part~="button"] {
-  padding: 1em;
+  padding: 0.5em 0.9em;
   color: var(--button-color);
+  font-weight: 500;
+  font-size: 0.95em;
+  font-family: inherit;
   background-color: transparent;
   border: none;
   border-radius: var(--button-border-radius);
