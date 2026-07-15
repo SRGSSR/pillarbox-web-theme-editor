@@ -237,6 +237,10 @@ input {
   outline: none;
 }
 
+media-search {
+  min-width: 380px;
+}
+
 confirmation-dialog {
   max-width: 360px;
 }

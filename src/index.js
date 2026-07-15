@@ -5,6 +5,7 @@ import './components/confirmation-dialog.js';
 import './components/preview-box.js';
 import './components/css-editor.js';
 import './components/editor-tabs.js';
+import './components/media-search.js';
 import sassCompiler from './workspace/workspace.js';
 import TabManager from './app/tab-manager.js';
 import initEditorController from './app/editor-controller.js';
@@ -25,6 +26,7 @@ initPreviewController({
   compiler: sassCompiler,
   preview: document.getElementById('preview'),
   navigation: document.getElementById('navigation'),
+  mediaSearch: document.getElementById('media-search'),
   downloadButton: document.getElementById('download-button'),
   resetButton: document.getElementById('reset-button'),
   resetDialog: document.getElementById('reset-confirmation-dialog')
