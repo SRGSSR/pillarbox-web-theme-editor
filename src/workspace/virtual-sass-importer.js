@@ -50,6 +50,16 @@ export class VirtualSassImporter {
   }
 
   /**
+   * Registers an additional file in the virtual filesystem.
+   *
+   * @param {string} path - The virtual path of the file.
+   * @param {TreeItem} item - The workspace item holding the file's content.
+   */
+  addFile(path, item) {
+    this.#files[path] = item;
+  }
+
+  /**
    * Resolves the canonical path for an import.
    *
    * @param {string} url - The URL to canonicalize.

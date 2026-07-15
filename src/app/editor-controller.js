@@ -1,5 +1,14 @@
 import WorkspaceProvider from '../workspace/workspace-provider.js';
 import UiState from '../services/ui-state.js';
+import {
+  evaluatePlayerOptions,
+  PLAYER_OPTIONS_FILE_NAME
+} from '../workspace/player-options.js';
+
+/**
+ * Monotonic token so only the latest player options evaluation applies.
+ */
+let optionsEvaluation = 0;
 
 /**
  * @typedef {import('./tab-manager.js').default} TabManager
@@ -84,7 +93,13 @@ function applyEdit(ctx, { id, value }) {
   if (!item) return;
 
   item.content = value;
-  recompile(ctx);
+
+  if (id === PLAYER_OPTIONS_FILE_NAME) {
+    applyPlayerOptions(ctx);
+  } else {
+    recompile(ctx);
+  }
+
   WorkspaceProvider.saveWorkspace(ctx.compiler.workspace);
 }
 
@@ -169,6 +184,37 @@ function matchItem(item, path, prefix) {
   }
 
   return itemPath === path ? item : undefined;
+}
+
+/**
+ * Evaluates the player options file into the preview player, tolerating
+ * transient syntax errors while the user is typing. The player is only
+ * rebuilt when the evaluated options actually change.
+ *
+ * @param {Object} ctx The controller context.
+ * @returns {Promise<void>} Resolves once the options are applied.
+ */
+export async function applyPlayerOptions(ctx) {
+  const file = ctx.compiler.workspace
+    .find(item => item.name === PLAYER_OPTIONS_FILE_NAME);
+
+  if (!file) return;
+
+  optionsEvaluation += 1;
+
+  const token = optionsEvaluation;
+
+  try {
+    const options = await evaluatePlayerOptions(file.content);
+    const changed =
+      JSON.stringify(options) !== JSON.stringify(ctx.preview.playerOptions);
+
+    if (token === optionsEvaluation && changed) {
+      ctx.preview.playerOptions = options;
+    }
+  } catch (error) {
+    console.warn('Player options evaluation failed:', error.message);
+  }
 }
 
 /**

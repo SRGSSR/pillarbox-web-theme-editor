@@ -241,6 +241,32 @@ media-search {
   min-width: 380px;
 }
 
+.preset-list {
+  min-width: 240px;
+  max-width: 280px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.preset-option {
+  display: block;
+  width: 100%;
+  padding: 0.5em 0.75em;
+  color: var(--pbte-text);
+  font-size: 0.9em;
+  font-family: inherit;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: var(--pbte-radius-s);
+  cursor: pointer;
+}
+
+.preset-option:hover {
+  background: var(--pbte-bg-2);
+}
+
 confirmation-dialog {
   max-width: 360px;
 }
