@@ -67,4 +67,60 @@ describe('ResizableSplitView', () => {
     // Cleanup
     getBoundingClientRectSpy.mockRestore();
   });
+
+  it('resizes the first panel vertically when orientation is vertical', async() => {
+    element.orientation = 'vertical';
+    await element.updateComplete;
+
+    const resizer = element.shadowRoot.querySelector('resizable-bar');
+
+    const getBoundingClientRectSpy = vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+      width: 800,
+      height: 400,
+      left: 0,
+      right: 800,
+      top: 0,
+      bottom: 400,
+      x: 0,
+      y: 0,
+      toJSON: () => {
+      }
+    });
+
+    // Simulate the resizing along the Y axis
+    resizer.dispatchEvent(new CustomEvent('resize-move', {
+      detail: { clientX: 200, clientY: 100 }
+    }));
+
+    await element.updateComplete;
+
+    const computedStyle = getComputedStyle(element);
+
+    expect(computedStyle.getPropertyValue('--left-panel-width').trim()).toBe('25%');
+
+    // Cleanup
+    getBoundingClientRectSpy.mockRestore();
+  });
+
+  it('propagates the orientation to the inner resizable-bar', async() => {
+    element.orientation = 'vertical';
+    await element.updateComplete;
+
+    const resizer = element.shadowRoot.querySelector('resizable-bar');
+
+    expect(resizer.getAttribute('orientation')).toBe('vertical');
+  });
+
+  it('reflects the collapsed property to an attribute', async() => {
+    element.collapsed = true;
+    await element.updateComplete;
+
+    expect(element.hasAttribute('collapsed')).toBe(true);
+  });
+
+  it('re-exports the resizer part of the inner resizable-bar', () => {
+    const resizer = element.shadowRoot.querySelector('resizable-bar');
+
+    expect(resizer.getAttribute('exportparts')).toContain('resizer');
+  });
 });

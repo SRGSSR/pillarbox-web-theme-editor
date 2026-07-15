@@ -1,0 +1,59 @@
+@use 'material-symbols' as ms;
+
+:host {
+  display: block;
+
+  --tabs-background: #1e2126;
+  --tab-background: transparent;
+  --tab-active-background: #17191d;
+  --tab-color: #a9adb3;
+  --tab-active-color: #ebeef1;
+  --tab-active-border: #6fa8d8;
+  --tab-border-color: #33383f;
+}
+
+[part~="tabs"] {
+  display: flex;
+  overflow-x: auto;
+  background: var(--tabs-background);
+}
+
+[part~="tab"] {
+  display: inline-flex;
+  gap: 0.5em;
+  align-items: center;
+  padding: 0.5em 0.75em;
+  color: var(--tab-color);
+  font-size: 0.85em;
+  font-family: inherit;
+  white-space: nowrap;
+  background: var(--tab-background);
+  border: none;
+  border-top: 2px solid transparent;
+  border-right: 1px solid var(--tab-border-color);
+  cursor: pointer;
+}
+
+[part~="tab"][part~="active"] {
+  color: var(--tab-active-color);
+  background: var(--tab-active-background);
+  border-top-color: var(--tab-active-border);
+}
+
+[part~="tab-close"] {
+  @include ms.material-symbols;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+  font-size: 1em;
+  border-radius: 3px;
+  opacity: 0.6;
+}
+
+[part~="tab-close"]:hover {
+  background: rgb(255 255 255 / 12%);
+  opacity: 1;
+}

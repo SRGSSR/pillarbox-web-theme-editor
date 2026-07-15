@@ -1,21 +1,34 @@
 :host {
+  --bar-margin: var(--resizable-bar-margin-inline, 1em);
+  --bar-resizer-bg: var(--resizable-bar-resizer-bg-color, #575454);
+  --bar-resizer-width: var(--resizable-bar-resizer-width, 0.3em);
+  --bar-resizer-height: var(--resizable-bar-resizer-height, 50%);
+  --bar-resizer-radius: var(--resizable-bar-resizer-border-radius, 5px);
+
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin-inline: var(--resizable-bar-margin-inline);
+  margin-inline: var(--bar-margin);
+}
 
-  --resizable-bar-margin-inline: 1em;
-  --resizable-bar-resizer-bg-color: #575454;
-  --resizable-bar-resizer-width: 0.3em;
-  --resizable-bar-resizer-height: 50%;
-  --resizable-bar-resizer-border-radius: 5px;
+:host([orientation="vertical"]) {
+  width: 100%;
+  height: auto;
+  margin-block: var(--bar-margin);
+  margin-inline: 0;
 }
 
 [part="resizer"] {
-  width: var(--resizable-bar-resizer-width);
-  height: var(--resizable-bar-resizer-height);
-  background-color: var(--resizable-bar-resizer-bg-color);
-  border-radius: var(--resizable-bar-resizer-border-radius);
+  width: var(--bar-resizer-width);
+  height: var(--bar-resizer-height);
+  background-color: var(--bar-resizer-bg);
+  border-radius: var(--bar-resizer-radius);
   cursor: ew-resize;
+}
+
+:host([orientation="vertical"]) [part="resizer"] {
+  width: var(--bar-resizer-height);
+  height: var(--bar-resizer-width);
+  cursor: ns-resize;
 }

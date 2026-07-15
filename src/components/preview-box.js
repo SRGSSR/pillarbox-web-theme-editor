@@ -23,7 +23,7 @@ class PreviewBox extends LitElement {
   };
 
   static styles = css`
-    .player-container {
+    #preview-player {
       width: 100%;
       height: 100%;
     }
@@ -36,15 +36,12 @@ class PreviewBox extends LitElement {
   }
 
   render() {
-    // TODO Remove the player container once this is resolved: https://github.com/videojs/video.js/pull/8679
     return html`
       <style>${this.appliedCss}</style>
-      <div class="player-container">
-        <video id="preview-player"
-               class="pillarbox-js"
-               controls crossOrigin="anonymous">
-        </video>
-      </div>
+      <video id="preview-player"
+             class="pillarbox-js"
+             controls crossOrigin="anonymous">
+      </video>
     `;
   }
 

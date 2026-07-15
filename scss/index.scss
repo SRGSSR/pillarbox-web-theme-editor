@@ -1,4 +1,20 @@
+@use "../src/components/material-symbols" as ms;
 @import "../node_modules/videojs-font/css/videojs-icons.css";
+
+/* Ligature icon font, self-hosted from public/fonts. Registered here in
+ * the document so shadow DOM components can use it too — @font-face is
+ * a document-level resource and does not work inside shadow roots. */
+@font-face {
+  font-weight: 400;
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: url('/fonts/material-symbols-outlined.woff2') format('woff2');
+  font-display: block;
+}
+
+.material-symbols-outlined {
+  @include ms.material-symbols;
+}
 
 *,
 *::before,
@@ -17,12 +33,39 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --button-background: #40729d;
+  /* Design tokens: dark "control room" chrome */
+  --pbte-bg-0: #17191d;
+  --pbte-bg-1: #1e2126;
+  --pbte-bg-2: #282c33;
+  --pbte-border: #33383f;
+  --pbte-text: rgb(235 238 241 / 92%);
+  --pbte-text-muted: rgb(235 238 241 / 55%);
+  --pbte-accent: #40729d;
+  --pbte-accent-bright: #6fa8d8;
+  --pbte-danger: #9d4040;
+  --pbte-danger-hover: #733030;
+  --pbte-radius-s: 4px;
+  --pbte-radius-m: 6px;
+
+  /* Size scale */
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 0.75rem;
+  --size-4: 1rem;
+
+  /* Bridge component CSS-prop contracts to the tokens */
+  --app-background-color: var(--pbte-bg-0);
+  --app-color: var(--pbte-text);
+  --button-background: var(--pbte-accent);
   --button-hover-background: #305273;
-  --button-color: var(--app-color);
-  --button-border-radius: 0.5em;
-  --app-background-color: #242424;
-  --app-color: rgb(255 255 255 / 87%);
+  --button-color: var(--pbte-text);
+  --button-border-radius: var(--pbte-radius-s);
+  --tree-item-hover-color: rgb(255 255 255 / 5%);
+  --tree-item-selected-color: rgb(111 168 216 / 22%);
+  --popup-background: var(--pbte-bg-1);
+  --popup-border: 1px solid var(--pbte-border);
+  --popup-border-radius: var(--pbte-radius-m);
+  --resizable-bar-resizer-bg-color: var(--pbte-border);
 }
 
 html,
@@ -36,35 +79,91 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-header, footer {
-  flex-shrink: 0;
-  margin: 0 2em;
-}
-
-header h1 {
+/* Toolbar */
+.toolbar {
   display: flex;
+  flex-shrink: 0;
+  gap: var(--size-4);
+  align-items: center;
+  height: 48px;
+  padding: 0 var(--size-4);
+  background: var(--pbte-bg-1);
+  border-bottom: 1px solid var(--pbte-border);
+}
+
+.toolbar-brand {
+  display: flex;
+  gap: var(--size-2);
   align-items: center;
 }
 
-header .logo {
+.toolbar-brand .logo {
+  height: 1.25em;
+}
+
+.toolbar-brand h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: var(--size-2);
+  align-items: center;
+  margin-left: auto;
+}
+
+.toolbar-separator {
+  width: 1px;
   height: 1.5em;
+  background: var(--pbte-border);
 }
 
-header p {
-  margin-left: 0.5em;
-  padding-left: 0.5em;
-  text-align: justify;
-  border-left: 3px solid var(--app-color)
+.toolbar-logo {
+  display: flex;
+  color: var(--pbte-text-muted);
+  transition: color 0.15s ease;
 }
 
-main {
+.toolbar-logo:hover {
+  color: var(--pbte-text);
+}
+
+/* The mark is a mask so it follows currentcolor like the icon buttons */
+.toolbar-logo .github-mark {
+  width: 1.25em;
+  height: 1.25em;
+  background-color: currentcolor;
+  mask: url('/github-logo.svg') no-repeat center / contain;
+}
+
+/* Workbench layout */
+#workbench {
   display: flex;
   flex: 1;
-  height: 100%;
-  margin: 0 2em;
   overflow: hidden;
+}
+
+#sidebar {
+  display: flex;
+  flex: 0 0 240px;
+  overflow: auto;
+  background: var(--pbte-bg-1);
+  border-right: 1px solid var(--pbte-border);
+}
+
+#sidebar.collapsed {
+  display: none;
+}
+
+#sidebar tree-view {
+  padding: var(--size-2);
+  font-size: 0.9em;
 }
 
 preview-box, css-editor {
@@ -73,25 +172,38 @@ preview-box, css-editor {
   overflow: hidden;
 }
 
-footer {
-  display: flex;
-  align-items: center;
-  padding: 1em 0;
-
-  .logo {
-    display: flex;
-    margin-right: 1em;
-
-    img {
-      height: 1.5em;
-    }
-  }
+#editor-pane.empty css-editor,
+#editor-pane.empty editor-tabs {
+  display: none;
 }
 
-.section-title-container {
-  display: flex;
-  gap: 1em;
+.editor-placeholder {
+  display: none;
+  flex: 1;
   align-items: center;
+  justify-content: center;
+  color: var(--pbte-text-muted);
+}
+
+#editor-pane.empty .editor-placeholder {
+  display: flex;
+}
+
+/* Split view divider: a full-length hairline that lights up on hover */
+#main-split {
+  --resizable-bar-margin-inline: 0;
+  --resizable-bar-resizer-width: 4px;
+  --resizable-bar-resizer-height: 100%;
+  --resizable-bar-resizer-border-radius: 0;
+}
+
+#main-split::part(resizer):hover {
+  background-color: var(--pbte-accent-bright);
+}
+
+/* Popups open over the light-DOM monaco editor */
+toggle-pane-button {
+  --popup-z-index: 100;
 }
 
 /*
@@ -108,25 +220,53 @@ footer {
 }
 
 .pbte-btn, .pbte-alert-btn {
-  padding: 1em;
-  color: var(--button-color);
-  background: var(--button-background);
-  border: none;
-  border-radius: var(--button-border-radius);
+  padding: 0.35em 0.75em;
+  color: var(--pbte-text);
+  font-size: 0.85em;
+  font-family: inherit;
+  background: var(--pbte-bg-2);
+  border: 1px solid var(--pbte-border);
+  border-radius: var(--pbte-radius-s);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .pbte-btn:hover {
-  background-color: var(--button-hover-background);
+  border-color: var(--pbte-accent-bright);
 }
 
 .pbte-btn.alert {
-  background: #9D4040;
+  color: #d98c8c;
 }
 
 .pbte-btn.alert:hover {
-  background: #733030;
+  color: var(--pbte-text);
+  background: var(--pbte-danger);
+  border-color: var(--pbte-danger);
+}
+
+.pbte-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  color: var(--pbte-text-muted);
+  font-size: 1em;
+  background: transparent;
+  border: none;
+  border-radius: var(--pbte-radius-s);
+  cursor: pointer;
+}
+
+.pbte-icon-btn:hover {
+  color: var(--pbte-text);
+  background: var(--pbte-bg-2);
+}
+
+.pbte-icon-btn .material-symbols-outlined {
+  font-size: 20px;
 }
 
 input {
@@ -141,6 +281,12 @@ input {
 
 confirmation-dialog {
   max-width: 360px;
+
+  --dialog-background-color: var(--pbte-bg-1);
+  --dialog-border: 1px solid var(--pbte-border);
+  --dialog-border-radius: var(--pbte-radius-m);
+  --cancel-button-hover-color: var(--pbte-text);
+  --cancel-button-hover-background: rgb(255 255 255 / 10%);
 }
 
 *:not(:defined) {

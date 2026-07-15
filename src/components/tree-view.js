@@ -13,17 +13,29 @@ import { partMap } from './component-utils.js';
  * @fires TreeView#selected Dispatched when a non-folder item is clicked, with the item's data as detail.
  *
  * @property {Array<TreeItem>} items Holds the tree structure data.
+ * @property {TreeItem} selected The currently selected item, highlighted in
+ * the tree. Compared by identity against the elements of `items`.
+ * @property {Array<TreeItem>} errors Items in error, marked with a dot in
+ * the tree. Folders containing an errored item carry the marker too.
+ * Compared by identity against the elements of `items`.
  *
- * @part item - The item element.
+ * @part item - The item element. Carries the additional `selected` token for the selected item
+ * and the `error` token for items in error.
  * @part item-name - The element displaying the item's name.
  * @part root - The root element of the tree.
  *
- * @cssproperty [--tree-background-color=#333] - The background color of the tree component.
- * @cssproperty [--tree-item-hover-color=#555] - The background color of a tree item when hovered.
- * @cssproperty [--tree-item-selected-color=#666] - The background color of a tree item when selected.
- * @cssproperty [--tree-folder-icon='📁'] - The icon used for folders in the tree.
- * @cssproperty [--tree-file-icon='📄'] - The icon used for files in the tree.
+ * @cssproperty [--tree-background-color=transparent] - The background color of the tree component.
+ * @cssproperty [--tree-item-hover-color=rgb(255 255 255 / 6%)] - The background color of a tree item when hovered.
+ * @cssproperty [--tree-item-selected-color=rgb(255 255 255 / 12%)] - The background color of a tree item when selected.
+ * @cssproperty [--tree-folder-icon='folder'] - The glyph name (a string) for closed folders.
+ * @cssproperty [--tree-folder-open-icon='folder_open'] - The glyph name for open folders.
+ * @cssproperty [--tree-file-icon='draft'] - The glyph name for generic files.
+ * @cssproperty [--tree-file-css-icon='css'] - The glyph name for css and scss files.
+ * @cssproperty [--tree-file-js-icon='javascript'] - The glyph name for js files.
+ * @cssproperty [--tree-icon-font='Material Symbols Outlined'] - The ligature icon font resolving
+ * the glyph names. The host document must register the font face; the component only uses it.
  * @cssproperty [--tree-icon-size=1em] - The size of the icons in the tree.
+ * @cssproperty [--tree-error-color=#e5534b] - The color of the error marker dot.
  * @cssproperty [--tree-indentation=1.5em] - The indentation size for nested items in the tree.
  *
  * @example
@@ -42,12 +54,31 @@ class TreeView extends LitElement {
   static styles = unsafeCSS(treeViewStyle);
 
   static properties = {
-    items: { type: Array }
+    items: { type: Array },
+    selected: { attribute: false },
+    errors: { attribute: false }
   };
 
   constructor() {
     super();
     this.items = [];
+    this.selected = undefined;
+    this.errors = [];
+  }
+
+  /**
+   * Whether an item, or any of its descendants, is in error. Folders
+   * inherit the marker so a problem stays visible while they are closed.
+   *
+   * @param {TreeItem} item The item to check.
+   * @returns {boolean} True when the item should carry the error marker.
+   * @private
+   */
+  #hasError(item) {
+    if (this.errors?.includes(item)) return true;
+
+    return item.type === 'folder' &&
+      (item.children ?? []).some((child) => this.#hasError(child));
   }
 
   #handleSelect(e, item) {
@@ -76,6 +107,10 @@ class TreeView extends LitElement {
       folder: item.type === 'folder',
       closed: item.closed ?? true,
       scss: item.type === 'scss',
+      css: item.type === 'css' || item.type === 'scss',
+      js: item.type === 'js',
+      selected: item === this.selected,
+      error: this.#hasError(item),
       item: true
     };
 

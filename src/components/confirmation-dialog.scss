@@ -1,28 +1,29 @@
 :host {
-  --dialog-padding: 1em;
-  --dialog-background-color: #242424;
-  --dialog-border: 1px solid #666;
-  --dialog-color: rgb(255 255 255 / 87%);
-  --dialog-title-font-weight: 600;
-  --dialog-border-radius: 0.5em;
-  --dialog-max-width: 360px;
-  --accept-button-background: #9D4040;
-  --accept-button-hover-background: #733030;
-  --cancel-button-background: rgb(255 255 255 / 0%);
-  --cancel-button-hover-background: rgb(255 255 255 / 20%);
-  --cancel-button-hover-color: rgb(0 0 0 / 87%);
-  --button-color: rgb(255 255 255 / 87%);
-  --button-border-radius: 0.5em;
+  --cd-padding: var(--dialog-padding, 1em);
+  --cd-background: var(--dialog-background-color, #242424);
+  --cd-border: var(--dialog-border, 1px solid #666);
+  --cd-color: var(--dialog-color, rgb(255 255 255 / 87%));
+  --cd-title-font-weight: var(--dialog-title-font-weight, 600);
+  --cd-border-radius: var(--dialog-border-radius, 0.5em);
+  --cd-max-width: var(--dialog-max-width, 360px);
+  --cd-accept-background: var(--accept-button-background, #9d4040);
+  --cd-accept-hover-background: var(--accept-button-hover-background, #733030);
+  --cd-cancel-background: var(--cancel-button-background, rgb(255 255 255 / 0%));
+  --cd-cancel-hover-background:
+    var(--cancel-button-hover-background, rgb(255 255 255 / 20%));
+  --cd-cancel-hover-color: var(--cancel-button-hover-color, rgb(0 0 0 / 87%));
+  --cd-button-color: var(--button-color, rgb(255 255 255 / 87%));
+  --cd-button-border-radius: var(--button-border-radius, 0.5em);
 }
 
 dialog {
-  max-width: var(--dialog-max-width);
-  padding: var(--dialog-padding);
+  max-width: var(--cd-max-width);
+  padding: var(--cd-padding);
   overflow: visible;
-  color: var(--dialog-color);
-  background-color: var(--dialog-background-color);
-  border: var(--dialog-border);
-  border-radius: var(--dialog-border-radius);
+  color: var(--cd-color);
+  background-color: var(--cd-background);
+  border: var(--cd-border);
+  border-radius: var(--cd-border-radius);
 }
 
 dialog::backdrop {
@@ -30,7 +31,7 @@ dialog::backdrop {
 }
 
 ::slotted([slot="title"]) {
-  font-weight: var(--dialog-title-font-weight);
+  font-weight: var(--cd-title-font-weight);
 }
 
 ::slotted([slot="content"]) {
@@ -50,11 +51,14 @@ dialog::backdrop {
 }
 
 [part~="button"] {
-  padding: 1em;
-  color: var(--button-color);
+  padding: 0.5em 0.9em;
+  color: var(--cd-button-color);
+  font-weight: 500;
+  font-size: 0.95em;
+  font-family: inherit;
   background-color: transparent;
   border: none;
-  border-radius: var(--button-border-radius);
+  border-radius: var(--cd-button-border-radius);
   cursor: pointer;
   transition-timing-function: ease;
   transition-duration: 0.3s;
@@ -62,18 +66,18 @@ dialog::backdrop {
 }
 
 [part="button cancel"] {
-  background: var(--cancel-button-background);
+  background: var(--cd-cancel-background);
 }
 
 [part="button cancel"]:hover {
-  color: var(--cancel-button-hover-color);
-  background-color: var(--cancel-button-hover-background);
+  color: var(--cd-cancel-hover-color);
+  background-color: var(--cd-cancel-hover-background);
 }
 
 [part="button accept"] {
-  background: var(--accept-button-background);
+  background: var(--cd-accept-background);
 }
 
 [part="button accept"]:hover {
-  background-color: var(--accept-button-hover-background);
+  background-color: var(--cd-accept-hover-background);
 }
