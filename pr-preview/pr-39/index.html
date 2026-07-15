@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/svg+xml" href="./favicon.ico"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Theme Editor</title>
+  <script type="module" crossorigin src="./assets/index-CAHYSEoV.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DVOeIDuu.css">
+</head>
+<body>
+<header class="toolbar">
+  <button class="pbte-icon-btn" id="toggle-sidebar-button" title="Toggle the file tree"
+          aria-label="Toggle the file tree">
+    <span class="material-symbols-outlined" aria-hidden="true">left_panel_close</span>
+  </button>
+  <div class="toolbar-brand">
+    <img src="./srgssr-logo.png" class="logo" alt="SRG SSR"/>
+    <h1>Pillarbox Web Theme Editor</h1>
+  </div>
+  <div class="toolbar-actions">
+    <button class="pbte-btn" id="download-button">Export .zip</button>
+    <button class="pbte-btn alert" id="reset-button">Reset</button>
+    <span class="toolbar-separator"></span>
+    <button class="pbte-icon-btn" id="toggle-preview-button" title="Show or hide the preview"
+            aria-label="Show or hide the preview">
+      <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+    </button>
+    <button class="pbte-icon-btn" id="dock-button" title="Dock the preview right or bottom"
+            aria-label="Dock the preview right or bottom">
+      <span class="material-symbols-outlined" aria-hidden="true">dock_to_left</span>
+    </button>
+  </div>
+  <a class="toolbar-logo" href="https://github.com/srgssr/pillarbox-web" target="_blank"
+     rel="noopener" title="Pillarbox Web on GitHub" aria-label="Pillarbox Web on GitHub">
+    <span class="github-mark" aria-hidden="true"></span>
+  </a>
+</header>
+<main id="workbench">
+  <aside id="sidebar">
+    <tree-view id="navigation"></tree-view>
+  </aside>
+  <resizable-split-view id="main-split">
+    <section slot="left" id="editor-pane">
+      <editor-tabs id="tabs"></editor-tabs>
+      <css-editor id="editor" theme="vs-dark"></css-editor>
+      <div class="editor-placeholder">Select a file in the tree to start editing</div>
+    </section>
+    <section slot="right" id="preview-pane">
+      <preview-box id="preview"></preview-box>
+    </section>
+  </resizable-split-view>
+</main>
+<confirmation-dialog id="reset-confirmation-dialog">
+  <span slot="title">Reset Your Workspace?</span>
+  <span slot="content">
+    Are you sure you want to reset your workspace? All unsaved changes will be lost and the
+    theme will revert to the default settings. This action cannot be undone.
+  </span>
+  <span slot="accept">Confirm Reset</span>
+</confirmation-dialog>
+</body>
+</html>
