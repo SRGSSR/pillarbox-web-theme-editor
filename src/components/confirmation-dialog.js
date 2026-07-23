@@ -22,19 +22,19 @@ import confirmationDialogStyle from './confirmation-dialog.scss?inline';
  * @slot accept - (Optional) Customizes the accept button text. Defaults to "Accept."
  *
  * @cssproperty [--dialog-padding=1em] - The padding inside the dialog.
- * @cssproperty [--dialog-background-color=#242424] - The background color of the dialog.
- * @cssproperty [--dialog-border=1px solid #666] - The border style for the dialog.
+ * @cssproperty [--dialog-background-color=#1e2126] - The background color of the dialog.
+ * @cssproperty [--dialog-border=1px solid #33383f] - The border style for the dialog.
  * @cssproperty [--dialog-color=rgb(255 255 255 / 87%)] - The text color inside the dialog.
  * @cssproperty [--dialog-title-font-weight=600] - The font weight for the dialog title.
- * @cssproperty [--dialog-border-radius=0.5em] - The border radius of the dialog.
+ * @cssproperty [--dialog-border-radius=6px] - The border radius of the dialog.
  * @cssproperty [--dialog-max-width=360px] - The maximum width of the dialog.
- * @cssproperty [--button-color=rgb(255 255 255 / 87%)] - The text color of the buttons.
- * @cssproperty [--button-border-radius=0.5em] - The border radius of the buttons.
+ * @cssproperty [--button-color=rgb(235 238 241 / 92%)] - The text color of the buttons.
+ * @cssproperty [--button-border-radius=4px] - The border radius of the buttons.
  * @cssproperty [--accept-button-background=#9D4040] - The background color of the accept button.
  * @cssproperty [--accept-button-hover-background=#733030] - The background color of the accept button on hover.
  * @cssproperty [--cancel-button-background=rgb(255 255 255 / 0%)] - The background color of the cancel button.
- * @cssproperty [--cancel-button-hover-background=rgb(255 255 255 / 20%)] - The background color of the cancel button on hover.
- * @cssproperty [--cancel-button-hover-color=rgb(0 0 0 / 87%)] - The text color of the cancel button on hover.
+ * @cssproperty [--cancel-button-hover-background=rgb(255 255 255 / 10%)] - The background color of the cancel button on hover.
+ * @cssproperty [--cancel-button-hover-color=rgb(235 238 241 / 92%)] - The text color of the cancel button on hover.
  *
  * @example
  * <confirmation-dialog>
