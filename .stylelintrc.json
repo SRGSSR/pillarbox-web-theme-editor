@@ -6,6 +6,14 @@
         "*.js"
       ],
       "customSyntax": "postcss-lit"
+    },
+    {
+      "files": [
+        "src/assets/presets/*.scss"
+      ],
+      "rules": {
+        "nesting-selector-no-missing-scoping-root": null
+      }
     }
   ]
 }

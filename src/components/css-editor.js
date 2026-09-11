@@ -3,11 +3,14 @@ import { createRef, ref } from 'lit/directives/ref.js';
 import * as monaco from 'monaco-editor';
 import EditorWorker from 'monaco-editor/editor/editor.worker.js?worker';
 import CssWorker from 'monaco-editor/language/css/css.worker.js?worker';
+import TsWorker from 'monaco-editor/language/typescript/ts.worker?worker';
 
 const WORKERS = {
   css: CssWorker,
   scss: CssWorker,
-  less: CssWorker
+  less: CssWorker,
+  javascript: TsWorker,
+  typescript: TsWorker
 };
 
 self.MonacoEnvironment = {
@@ -21,7 +24,7 @@ self.MonacoEnvironment = {
 /**
  * Monaco language ids by file extension; documents default to scss.
  */
-const LANGUAGES = { css: 'css' };
+const LANGUAGES = { js: 'javascript', css: 'css' };
 
 /**
  * Resolves the Monaco language for a document id (its file path).

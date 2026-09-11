@@ -53,6 +53,16 @@ export class SassWorkspaceCompiler {
   }
 
   /**
+   * Registers a workspace file.
+   *
+   * @param {string} path The virtual path of the file.
+   * @param {TreeItem} item The workspace item holding the file's content.
+   */
+  registerFile(path, item) {
+    this.#importer.addFile(path, item);
+  }
+
+  /**
    * Compiles the main SCSS file into CSS.
    *
    * @param {Boolean} [compressed=true]  whether the output css will be compressed or not.
