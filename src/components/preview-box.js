@@ -11,6 +11,8 @@ import pillarbox from '@srgssr/pillarbox-web';
  * @property {String} appliedCss CSS styles that can be applied to the video player.
  * @property {String} [src='urn:srf:video:05457f66-fd67-4131-8e0a-6d85743efc39'] The media to be loaded by the player,
  * @property {String} [type='srgssr/urn'] The type of media to be loaded.
+ * @property {Object} [playerOptions={}] Extra options for the player; the
+ * player is recreated when they change.
  *
  * @example
  * <preview-box></preview-box>
@@ -19,7 +21,8 @@ class PreviewBox extends LitElement {
   static properties = {
     appliedCss: { type: String },
     mediaSrc: { type: String },
-    type: { type: String }
+    type: { type: String },
+    playerOptions: { type: Object }
   };
 
   /*
@@ -42,6 +45,7 @@ class PreviewBox extends LitElement {
     super();
     this.mediaSrc = 'urn:srf:video:05457f66-fd67-4131-8e0a-6d85743efc39';
     this.type = 'srgssr/urn';
+    this.playerOptions = {};
   }
 
   render() {
@@ -57,14 +61,17 @@ class PreviewBox extends LitElement {
   updated(_changedProperties) {
     super.firstUpdated(_changedProperties);
 
-    if (['mediaSrc', 'type'].some(property => _changedProperties.has(property))) {
+    const triggers = ['mediaSrc', 'type', 'playerOptions'];
+
+    if (triggers.some(property => _changedProperties.has(property))) {
       this.player?.dispose();
 
       const el = this.shadowRoot.getElementById('preview-player');
 
       this.player = pillarbox(el, {
         muted: true,
-        restoreEl: true
+        restoreEl: true,
+        ...this.playerOptions
       });
 
       this.player.src({

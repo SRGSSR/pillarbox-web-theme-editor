@@ -1,6 +1,6 @@
 import WorkspaceProvider from '../workspace/workspace-provider.js';
 import UiState from '../services/ui-state.js';
-import { recompile } from './editor-controller.js';
+import { applyPlayerOptions, recompile } from './editor-controller.js';
 
 /**
  * The context of the preview controller.
@@ -25,6 +25,7 @@ import { recompile } from './editor-controller.js';
  */
 export default function initPreviewController(ctx) {
   recompile(ctx);
+  applyPlayerOptions(ctx);
   initMediaSearch(ctx);
   initDownload(ctx);
   initReset(ctx);

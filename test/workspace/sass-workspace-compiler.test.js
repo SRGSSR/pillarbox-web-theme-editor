@@ -25,6 +25,32 @@ describe('SassWorkspaceCompiler without mocks', () => {
     expect(result).toContain('.test{color:blue}');
   });
 
+  it('resolves files registered after construction', () => {
+    const workspace = [
+      {
+        name: 'main.scss',
+        content: '.test { color: red; }',
+        type: 'scss'
+      }
+    ];
+    const compiler = new SassWorkspaceCompiler(workspace, 'main.scss');
+    const late = {
+      name: '_late.scss',
+      content: '.late { color: green; }',
+      type: 'scss'
+    };
+
+    workspace.push(late);
+    workspace[0].content += ' @import "late";';
+
+    // Without registration the importer cannot resolve the new file
+    expect(() => compiler.compile()).toThrow();
+
+    compiler.registerFile('_late.scss', late);
+
+    expect(compiler.compile()).toContain('.late{color:green}');
+  });
+
   it('triggers the download of the ZIP file with the correct filename', async() => {
     const workspace = [{
       name: 'main.scss',

@@ -21,6 +21,10 @@ import confirmationDialogStyle from './confirmation-dialog.scss?inline';
  * @slot cancel - (Optional) Customizes the cancel button text. Defaults to "Cancel."
  * @slot accept - (Optional) Customizes the accept button text. Defaults to "Accept."
  *
+ * @attr {('accent')} [variant] - Set to `accent` when the confirmation is not
+ * destructive, which colours the accept button with the accent instead of the
+ * danger red.
+ *
  * @cssproperty [--dialog-padding=1em] - The padding inside the dialog.
  * @cssproperty [--dialog-background-color=#1e2126] - The background color of the dialog.
  * @cssproperty [--dialog-border=1px solid #33383f] - The border style for the dialog.

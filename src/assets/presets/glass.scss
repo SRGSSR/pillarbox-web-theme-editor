@@ -1,0 +1,284 @@
+&:not(.vjs-audio-only-mode) .vjs-control-bar {
+  align-items: center;
+  width: calc(100% - 2.4em);
+  height: 4em;
+  margin: 0 1.2em 1.2em;
+  padding-inline: 1em;
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 2em;
+  box-shadow: 0 0.5em 2em rgb(0 0 0 / 35%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+&:not(.vjs-audio-only-mode) .vjs-progress-control {
+  position: static;
+  flex: 1;
+  order: -2;
+  width: auto;
+  height: 100%;
+  margin: 0 0.6em;
+}
+
+&:not(.vjs-audio-only-mode) .vjs-custom-control-spacer {
+  display: none;
+}
+
+&:not(.vjs-audio-only-mode) {
+  .vjs-play-control {
+    order: -5;
+  }
+
+  .vjs-volume-panel {
+    order: -4;
+  }
+
+  .vjs-current-time {
+    order: -3;
+    margin: 0;
+  }
+
+  .vjs-duration {
+    order: -1;
+  }
+}
+
+&:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-time-divider {
+  display: none;
+}
+
+.vjs-progress-holder {
+  height: 0.35em;
+}
+
+.vjs-slider {
+  background-color: rgb(255 255 255 / 16%);
+}
+
+.vjs-load-progress {
+  background: rgb(255 255 255 / 25%);
+}
+
+.vjs-play-progress {
+  color: #ddd6fe;
+  background: #8b5cf6;
+  box-shadow: 0 0 0.8em rgb(139 92 246 / 80%);
+}
+
+.vjs-volume-level {
+  color: #ddd6fe;
+  background: #a78bfa;
+}
+
+.vjs-volume-panel .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical {
+  position: absolute;
+  bottom: 4em;
+  left: 50%;
+  width: 3em;
+  height: 8em;
+  margin: 0;
+  background: rgb(40 40 60 / 45%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 1em;
+  box-shadow: 0 0.5em 2em rgb(0 0 0 / 35%);
+  transform: translateX(-50%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+
+.vjs-text-track-display {
+  inset: 0 0 5.6em;
+}
+
+.vjs-time-tooltip,
+.vjs-mouse-display .vjs-time-tooltip,
+.vjs-volume-tooltip {
+  padding: 0.3em 0.7em;
+  color: #fff;
+  text-shadow: none;
+  background-color: rgb(255 255 255 / 15%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 1em;
+  backdrop-filter: blur(12px);
+}
+
+.vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+  padding: 0.6em;
+  background: rgb(40 40 60 / 45%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 1.2em;
+  box-shadow: 0 0.5em 2em rgb(0 0 0 / 35%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+
+.vjs-menu .vjs-menu-item {
+  text-transform: capitalize;
+  border-radius: 0.8em;
+}
+
+.vjs-menu .vjs-menu-item:not(.vjs-selected):focus,
+.vjs-menu .vjs-menu-item:not(.vjs-selected):hover {
+  background-color: rgb(255 255 255 / 15%);
+}
+
+.vjs-menu li.vjs-selected,
+.vjs-menu li.vjs-selected:focus,
+.vjs-menu li.vjs-selected:hover {
+  color: #2e1065;
+  background-color: rgb(255 255 255 / 92%);
+}
+
+.vjs-menu li.vjs-menu-title {
+  color: rgb(255 255 255 / 60%);
+  letter-spacing: 0.08em;
+}
+
+.vjs-modal-dialog.vjs-text-track-settings {
+  background: rgb(40 40 60 / 55%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 1.2em;
+  box-shadow: 0 0.5em 2em rgb(0 0 0 / 35%);
+  backdrop-filter: blur(24px) saturate(160%);
+}
+
+.vjs-modal-dialog {
+  scrollbar-color: rgb(255 255 255 / 35%) transparent;
+  scrollbar-width: thin;
+}
+
+.vjs-text-track-settings legend {
+  color: rgb(255 255 255 / 65%);
+  letter-spacing: 0.05em;
+}
+
+&.video-js .vjs-text-track-settings select {
+  width: 100%;
+  max-width: none;
+  background: rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 0.6em;
+}
+
+.vjs-track-settings-controls button {
+  background: rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 1em;
+}
+
+.vjs-track-settings-controls button:hover {
+  background: rgb(255 255 255 / 22%);
+}
+
+.vjs-track-settings-controls .vjs-done-button {
+  color: #2e1065;
+  background: rgb(255 255 255 / 92%);
+}
+
+.vjs-track-settings-controls .vjs-done-button:hover {
+  background: #fff;
+}
+
+.vjs-text-track-settings fieldset {
+  display: block;
+  margin: 0 0 1em;
+  padding: 0 0 1em;
+  border-bottom: 1px solid rgb(255 255 255 / 18%);
+  animation: preset-settings-in 0.35s ease both;
+}
+
+.vjs-track-settings-font fieldset:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.vjs-text-track-settings fieldset span {
+  display: block;
+  margin-top: 0.4em;
+}
+
+.vjs-text-track-settings .vjs-label {
+  display: block;
+  margin: 0 0 0.3em;
+  color: rgb(255 255 255 / 60%);
+  font-size: 0.85em;
+}
+
+.vjs-track-settings-colors fieldset:nth-child(2) {
+  animation-delay: 0.07s;
+}
+
+.vjs-track-settings-colors fieldset:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.vjs-track-settings-font fieldset:nth-child(1) {
+  animation-delay: 0.21s;
+}
+
+.vjs-track-settings-font fieldset:nth-child(2) {
+  animation-delay: 0.28s;
+}
+
+.vjs-track-settings-font fieldset:nth-child(3) {
+  animation-delay: 0.35s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vjs-text-track-settings fieldset {
+    animation: none;
+  }
+}
+
+@keyframes preset-settings-in {
+  from {
+    transform: translateY(0.5em);
+    opacity: 0;
+  }
+}
+
+.vjs-big-play-button {
+  background: rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 40%);
+  box-shadow: 0 0.4em 1.6em rgb(0 0 0 / 30%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+
+&:hover .vjs-big-play-button {
+  background-color: rgb(255 255 255 / 22%);
+}
+
+.vjs-title-bar {
+  background: none;
+}
+
+.vjs-title-bar-title,
+.vjs-title-bar-description {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.2em 0.8em;
+  background: rgb(30 30 45 / 40%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 1em;
+  backdrop-filter: blur(12px) saturate(160%);
+}
+
+.vjs-title-bar-description {
+  color: rgb(255 255 255 / 75%);
+}
+
+&.vjs-has-started:not(.vjs-audio-only-mode) .vjs-control-bar {
+  transition: visibility 0.2s, opacity 0.2s, transform 0.25s ease;
+}
+
+&.vjs-has-started.vjs-user-inactive.vjs-playing:not(.vjs-audio-only-mode)
+.vjs-control-bar {
+  transform: translateY(1em);
+  transition: visibility 0.8s, opacity 0.8s, transform 0.8s ease;
+}
+
+@keyframes vjs-spinner-fade {
+  0% { border-top-color: #4c3a78; }
+  20% { border-top-color: #4c3a78; }
+  35% { border-top-color: #a78bfa; }
+  60% { border-top-color: #4c3a78; }
+  100% { border-top-color: #4c3a78; }
+}

@@ -18,13 +18,16 @@ import togglePaneButtonStyle from './toggle-pane-button.scss?inline';
  * @part button - The button element that can be styled independently.
  * @part popup - The popup element that appears or hides based on the `opened` state.
  *
- * @cssproperty [--button-background=#40729d] - The background color of the button.
+ * @cssproperty [--button-background=#282c33] - The background color of the button.
  * @cssproperty [--button-hover-background=#305273] - The background color of the button on hover.
- * @cssproperty [--button-color=#fff] - The text color of the button.
- * @cssproperty [--popup-background=#333] - The background color of the popup element.
+ * @cssproperty [--button-color=rgb(255 255 255 / 87%)] - The text color of the button.
+ * @cssproperty [--button-border=1px solid #33383f] - The border of the button.
+ * @cssproperty [--button-hover-border-color=#6fa8d8] - The border color of the button on hover.
+ * @cssproperty [--button-border-radius=4px] - The border radius of the button.
+ * @cssproperty [--popup-background=#242424] - The background color of the popup element.
  * @cssproperty [--popup-border=1px solid #666] - The border style for the popup element.
  * @cssproperty [--popup-border-radius=0.5em] - The border radius of the popup element.
- * @cssproperty [--popup-z-index=1] - The z-index of the popup element, controlling its stack order.
+ * @cssproperty [--popup-z-index=100] - The z-index of the popup element, controlling its stack order.
  *
  * @example
  * <toggle-pane-button label="Display a message">
