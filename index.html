@@ -20,6 +20,9 @@
   </div>
   <media-search id="media-search"></media-search>
   <div class="toolbar-actions">
+    <toggle-pane-button title="Apply a theme preset" label="Presets" id="preset-button">
+      <ul id="preset-list" class="preset-list"></ul>
+    </toggle-pane-button>
     <button class="pbte-btn" id="download-button">Export .zip</button>
     <button class="pbte-btn alert" id="reset-button">Reset</button>
     <span class="toolbar-separator"></span>
@@ -59,6 +62,15 @@
     theme will revert to the default settings. This action cannot be undone.
   </span>
   <span slot="accept">Confirm Reset</span>
+</confirmation-dialog>
+<confirmation-dialog id="preset-confirmation-dialog" variant="accent">
+  <span slot="title">Apply This Preset?</span>
+  <span slot="content">
+    Applying a preset overwrites the <code>_preset.scss</code> and
+    <code>player-options.js</code> files of your workspace and adds the preset import to the
+    main file. Your other files are left untouched.
+  </span>
+  <span slot="accept">Apply Preset</span>
 </confirmation-dialog>
 </body>
 </html>

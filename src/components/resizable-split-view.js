@@ -66,8 +66,6 @@ class ResizableSplitView extends LitElement {
       : e.detail.clientX - rect.left;
     const size = vertical ? rect.height : rect.width;
 
-    // Note: despite its name this property drives the size of the first
-    // panel on both axes; renaming it would break existing consumers.
     this.style.setProperty('--left-panel-width', `${(offset / size) * 100}%`);
   }
 }
