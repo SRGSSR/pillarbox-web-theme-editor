@@ -15,6 +15,13 @@
   --button-border-radius: 4px;
 }
 
+/* A confirmation that is not destructive: accent the accept button rather
+ * than colouring it with the danger red. */
+:host([variant="accent"]) {
+  --accept-button-background: #40729d;
+  --accept-button-hover-background: #305273;
+}
+
 dialog {
   max-width: var(--dialog-max-width);
   padding: var(--dialog-padding);

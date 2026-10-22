@@ -1,0 +1,243 @@
+&:not(.vjs-audio-only-mode) .vjs-control-bar {
+  height: 6em;
+  padding-bottom: 1.4em;
+  background: none;
+}
+
+&:not(.vjs-audio-only-mode) .vjs-control-bar::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgb(0 0 0 / 60%));
+  transition: opacity 0.1s;
+  content: '';
+  pointer-events: none;
+}
+
+&:not(.vjs-audio-only-mode) .vjs-progress-control {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: 0.4em;
+  transition: height 0.2s ease;
+}
+
+&:not(.vjs-audio-only-mode) .vjs-progress-control:hover,
+&:not(.vjs-audio-only-mode) .vjs-progress-control:focus-within {
+  height: 0.9em;
+}
+
+.vjs-progress-holder {
+  height: 100%;
+  margin: 0;
+}
+
+.vjs-slider,
+.vjs-load-progress,
+.vjs-play-progress {
+  border-radius: 0;
+}
+
+.vjs-play-progress::before {
+  display: none;
+}
+
+&:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-current-time,
+&:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-time-divider,
+&:not(.vjs-layout-tiny, .vjs-layout-x-small, .vjs-live) .vjs-duration {
+  display: none;
+}
+
+.vjs-remaining-time {
+  display: block;
+  order: 1;
+  font-size: 1.15em;
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.06em;
+}
+
+.vjs-subs-caps-button,
+.vjs-audio-button,
+.vjs-picture-in-picture-control,
+.vjs-fullscreen-control {
+  order: 2;
+}
+
+.vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal {
+  width: 5em;
+  height: 3em;
+  margin-right: 0;
+  visibility: visible;
+  opacity: 1;
+  transition: none;
+}
+
+.vjs-button > .vjs-icon-placeholder::before {
+  text-shadow: 0 0.1em 0.5em rgb(0 0 0 / 90%);
+}
+
+.vjs-text-track-display {
+  inset: 0 0 4.8em;
+}
+
+.vjs-time-tooltip,
+.vjs-mouse-display .vjs-time-tooltip,
+.vjs-volume-tooltip {
+  padding: 0.4em 0.7em;
+  font-family: Georgia, 'Times New Roman', serif;
+  text-shadow: none;
+  background-color: rgb(22 22 22 / 92%);
+  border-radius: 0.2em;
+}
+
+.vjs-menu .vjs-menu-item {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+}
+
+.vjs-menu li.vjs-menu-title {
+  color: rgb(255 255 255 / 60%);
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.25em;
+}
+
+.vjs-modal-dialog.vjs-text-track-settings {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.vjs-modal-dialog {
+  scrollbar-color: rgb(255 255 255 / 35%) transparent;
+  scrollbar-width: thin;
+}
+
+.vjs-text-track-settings legend {
+  color: rgb(255 255 255 / 70%);
+  font-size: 0.85em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+&.video-js .vjs-text-track-settings select {
+  width: 100%;
+  max-width: none;
+  font-family: inherit;
+}
+
+.vjs-track-settings-controls button {
+  font-family: inherit;
+  letter-spacing: 0.08em;
+}
+
+.vjs-text-track-settings fieldset {
+  display: block;
+  margin: 0 0 1em;
+  padding: 0 0 1em;
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+  animation: preset-settings-in 0.35s ease both;
+}
+
+.vjs-track-settings-font fieldset:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.vjs-text-track-settings fieldset span {
+  display: block;
+  margin-top: 0.4em;
+}
+
+.vjs-text-track-settings .vjs-label {
+  display: block;
+  margin: 0 0 0.3em;
+  color: rgb(255 255 255 / 65%);
+  font-size: 0.85em;
+}
+
+.vjs-track-settings-colors fieldset:nth-child(2) {
+  animation-delay: 0.07s;
+}
+
+.vjs-track-settings-colors fieldset:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.vjs-track-settings-font fieldset:nth-child(1) {
+  animation-delay: 0.21s;
+}
+
+.vjs-track-settings-font fieldset:nth-child(2) {
+  animation-delay: 0.28s;
+}
+
+.vjs-track-settings-font fieldset:nth-child(3) {
+  animation-delay: 0.35s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vjs-text-track-settings fieldset {
+    animation: none;
+  }
+}
+
+@keyframes preset-settings-in {
+  from {
+    transform: translateY(0.5em);
+    opacity: 0;
+  }
+}
+
+&.vjs-has-started .vjs-title-bar {
+  display: none;
+}
+
+.vjs-title-bar {
+  padding-top: 1.4em;
+  font-size: 1em;
+  font-family: Georgia, 'Times New Roman', serif;
+  text-align: center;
+  background: none;
+}
+
+.vjs-title-bar-title {
+  color: rgb(255 255 255 / 85%);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.vjs-title-bar-title::after {
+  display: block;
+  width: 2.5em;
+  height: 1px;
+  margin: 0.5em auto 0;
+  background: rgb(175 0 30 / 90%);
+  content: '';
+}
+
+.vjs-title-bar-description {
+  color: rgb(255 255 255 / 60%);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+&.vjs-has-started.vjs-user-inactive.vjs-playing:not(.vjs-audio-only-mode)
+.vjs-control-bar {
+  opacity: 1;
+}
+
+&.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar::before {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+&.vjs-has-started.vjs-user-inactive.vjs-playing
+.vjs-control-bar > :not(.vjs-progress-control) {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s;
+}
+
+&.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-progress-control {
+  pointer-events: auto;
+}

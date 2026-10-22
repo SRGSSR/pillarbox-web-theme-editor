@@ -59,9 +59,6 @@ function syncGlyphs(ctx) {
 
   setGlyph(sidebarButton, sidebarCollapsed ? 'left_panel_open' : 'left_panel_close');
   setGlyph(previewButton, split.collapsed ? 'visibility_off' : 'visibility');
-
-  // dock_to_left is picked by what it draws — the docked pane on the
-  // right — not by its name; dock_to_right draws the pane on the left.
   setGlyph(dockButton, toBottom ? 'dock_to_bottom' : 'dock_to_left');
 }
 
